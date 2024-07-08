@@ -1,0 +1,63 @@
+.neon-text {
+    color: #faead1;
+    /* Light green for the inner text */
+    text-shadow:
+        0 0 5px rgba(228, 131, 50, 255),
+        0 0 10px rgba(228, 131, 50, 255),
+        0 0 20px rgba(228, 131, 50, 255),
+        0 0 40px rgba(228, 131, 50, 255),
+        0 0 80px rgba(228, 131, 50, 255);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    width: 45px;
+    /* Adjust the size */
+    height: 45px;
+    /* Adjust the size */
+    color: white;
+    background-color: rgba(228, 131, 50, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 30px;
+}
+
+.swiper-pagination-bullet {
+    background-color: white;
+}
+
+/* <h1 className="neon-text text-6xl font-bold">ALL NEW</h1> */
+
+
+.btn-custom {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-custom::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 0;
+    height: 100%;
+    z-index: -1;
+    transition: 0.4s;
+}
+
+.btn-custom:hover {
+    color: #e08534;
+    outline: 2px solid #e08534;
+}
+
+.btn-custom:hover::before {
+    width: 100%;
+}

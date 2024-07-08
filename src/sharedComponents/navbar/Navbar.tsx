@@ -80,7 +80,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="drawer px-2 lg:px-4 xl:px-5 py-2">
+      <div className="drawer px-2 py-2 md:px-0">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
