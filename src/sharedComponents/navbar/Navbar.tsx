@@ -10,7 +10,7 @@ const Navbar = () => {
           to="/"
           className={({ isActive, isPending }) =>
             isActive
-              ? "bg-[#d62b70] px-3 py-2 text-white rounded-md"
+              ? "bg-[#033955] px-3 py-2 text-white rounded-md"
               : isPending
               ? "pending"
               : ""
@@ -24,7 +24,7 @@ const Navbar = () => {
           to="/aboutUs"
           className={({ isActive, isPending }) =>
             isActive
-              ? "bg-[#d62b70] px-3 py-2 text-white rounded-md"
+              ? "bg-[#033955] px-3 py-2 text-white rounded-md"
               : isPending
               ? "pending"
               : ""
@@ -38,7 +38,7 @@ const Navbar = () => {
           to="/products"
           className={({ isActive, isPending }) =>
             isActive
-              ? "bg-[#d62b70] px-3 py-2 text-white rounded-md"
+              ? "bg-[#033955] px-3 py-2 text-white rounded-md"
               : isPending
               ? "pending"
               : ""
@@ -52,7 +52,7 @@ const Navbar = () => {
           to="/productManagement"
           className={({ isActive, isPending }) =>
             isActive
-              ? "bg-[#d62b70] px-3 py-2 text-white rounded-md"
+              ? "bg-[#033955] px-3 py-2 text-white rounded-md"
               : isPending
               ? "pending"
               : ""
@@ -66,7 +66,7 @@ const Navbar = () => {
           to="/cart"
           className={({ isActive, isPending }) =>
             isActive
-              ? "bg-[#d62b70] px-3 py-2 text-white rounded-md"
+              ? "bg-[#033955] px-3 py-2 text-white rounded-md"
               : isPending
               ? "pending"
               : ""
@@ -95,7 +95,7 @@ const Navbar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  className="inline-block h-6 w-6 stroke-current text-[#d62b70]"
+                  className="inline-block h-6 w-6 stroke-current text-[#033955]"
                 >
                   <path
                     strokeLinecap="round"
@@ -114,7 +114,7 @@ const Navbar = () => {
               />
             </div>
             <div className="hidden flex-none lg:block">
-              <ul className="flex gap-6 text-[#d62b70] font-semibold text-lg">
+              <ul className="flex gap-6 text-[#033955] font-semibold text-lg">
                 {/* Navbar menu content here */}
                 {links}
               </ul>
@@ -131,10 +131,10 @@ const Navbar = () => {
           ></label>
           <div className="min-h-full w-80 p-4 bg-base-200">
             <div className="flex gap-2 justify-center items-center mb-6">
-              <CgMenuGridO className="text-[#d62b70] text-3xl" />
-              <h1 className="text-center text-2xl text-[#d62b70]">Menus</h1>
+              <CgMenuGridO className="text-[#033955] text-3xl" />
+              <h1 className="text-center text-2xl text-[#033955]">Menus</h1>
             </div>
-            <ul className="menu text-[#d62b70] font-medium text-lg">
+            <ul className="menu text-[#033955] font-medium text-lg">
               {/* Sidebar content here */}
               {links}
             </ul>
