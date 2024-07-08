@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
 import logo from "../../assets/logo.png";
 import { FaFacebook, FaYoutube } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
+import { ReactNode } from "react";
 
 const Footer = () => {
   return (
@@ -126,7 +126,13 @@ const Footer = () => {
   );
 };
 
-const LinkGroup = ({ children, header }) => {
+const LinkGroup = ({
+  children,
+  header,
+}: {
+  children: ReactNode;
+  header: ReactNode;
+}) => {
   return (
     <>
       <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
@@ -141,7 +147,7 @@ const LinkGroup = ({ children, header }) => {
   );
 };
 
-const NavLink = ({ link, label }) => {
+const NavLink = ({ link, label }: { link: string; label: string }) => {
   return (
     <li>
       <a
@@ -152,11 +158,6 @@ const NavLink = ({ link, label }) => {
       </a>
     </li>
   );
-};
-
-Footer.propTypes = {
-  children: PropTypes.object,
-  header: PropTypes.object,
 };
 
 export default Footer;
