@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Banner from "../sections/HomeSections/Banner/Banner";
 import ProductCategory from "../sections/HomeSections/Category/ProductCategory";
+import Gallery from "../sections/HomeSections/Gallery/Gallery";
 
 const HomePage = () => {
   useEffect(() => {
@@ -11,6 +12,7 @@ const HomePage = () => {
     <div>
       <Banner />
       <ProductCategory />
+      <Gallery />
     </div>
   );
 };
