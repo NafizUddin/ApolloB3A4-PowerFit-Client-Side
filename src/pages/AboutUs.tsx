@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import ScrollTrigger from "react-scroll-trigger";
 import { Link } from "react-router-dom";
 import { FiTarget } from "react-icons/fi";
+import SectionTitle from "../components/sectionTitle/SectionTitle";
+import teamInfo from "../jsons/teamInfo.json";
 
 const AboutUs = () => {
   const [counterOn, setCounterOn] = useState(false);
@@ -18,7 +20,7 @@ const AboutUs = () => {
       {/* Heading Part */}
       <div className="flex flex-col lg:flex-row gap-8 md:my-16 md:mx-8 items-center my-14">
         <div className="flex-1">
-          <h1 className="text-[#e08534] text-xl pb-3 text-center md:text-left -mt-6 md:-mt-0">
+          <h1 className="text-[#e08534] text-xl pb-3 text-center md:text-left -mt-6 md:-mt-0 font-semibold">
             About PowerFit
           </h1>
           <h1 className="text-[#033955] font-bold text-3xl md:text-4xl pb-5 text-center md:text-left">
@@ -137,7 +139,7 @@ const AboutUs = () => {
           </div>
         </div>
         <div className="flex-1">
-          <h1 className="text-[#e08534] text-xl pb-2 text-center md:text-left pt-4">
+          <h1 className="text-[#e08534] text-xl pb-2 text-center md:text-left pt-4 font-semibold">
             Our Mission & Vision
           </h1>
           <h1 className="font-bold text-3xl md:text-4xl pb-5 text-center md:text-left">
@@ -199,93 +201,29 @@ const AboutUs = () => {
       {/* About Us ends */}
       {/* Meet Our Team starts*/}
       <div className="my-12">
-        <h1 className="text-violet-600 text-xl pb-3 text-center">Our Team</h1>
-        <h1 className=" font-bold text-3xl md:text-4xl pb-5 text-center">
-          Meet Our Expert Team
-        </h1>
-        <p className="text-center max-w-xl mx-auto">
-          Here is our talented team who are dedicated to turning your events
-          into unforgettable experiences.
-        </p>
+        <SectionTitle
+          sub="Our Team"
+          heading="Meet Our Expert Team"
+          description="Here is our dedicated team committed to enhancing your fitness journey with unparalleled expertise and support."
+        />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all my-7 md:mx-8 xl:mx-0">
-          <div className="relative overflow-hidden group">
-            <img
-              src="https://i.ibb.co/ft6DCGw/CEO.jpg"
-              alt=""
-              className="w-full h-[450px] transition duration-300 hover:grayscale object-fill group-hover:scale-110"
-            />
-            <div className="bg-white absolute bottom-12 w-80 space-y-1 flex flex-col py-3 px-5">
-              <span className="text-3xl group-hover:text-violet-600">
-                Lucas Bennett
-              </span>
-              <span className="text-lg">Founder</span>
+          {teamInfo.map((member, index) => (
+            <div key={index} className="relative overflow-hidden group">
+              <img
+                src={member.image}
+                alt=""
+                className="w-full h-[450px] transition duration-300 hover:grayscale object-fill group-hover:scale-110"
+              />
+              <div className="bg-white absolute bottom-12 w-80 space-y-1 flex flex-col py-3 px-5">
+                <span className="text-3xl group-hover:text-[#e08534] text-[#033955]">
+                  {member.name}
+                </span>
+                <span className="group-hover:text-gray-500 font-medium text-[#e08534]">
+                  {member.role}
+                </span>
+              </div>
             </div>
-          </div>
-          <div className="relative overflow-hidden group">
-            <img
-              src="https://i.ibb.co/3fRmXVw/eventCo1.jpg"
-              alt=""
-              className="w-full h-[450px] transition duration-300 hover:grayscale object-fill group-hover:scale-110"
-            />
-            <div className="bg-white absolute bottom-12 w-80 space-y-1 flex flex-col py-3 px-5">
-              <span className="text-3xl group-hover:text-violet-600">
-                Ava Elizabeth
-              </span>
-              <span className="text-lg">Event Coordinator</span>
-            </div>
-          </div>
-          <div className="relative overflow-hidden group">
-            <img
-              src="https://i.ibb.co/NNDsf7C/eventCo2.jpg"
-              alt=""
-              className="w-full h-[450px] transition duration-300 hover:grayscale object-fill group-hover:scale-110"
-            />
-            <div className="bg-white absolute bottom-12 w-80 space-y-1 flex flex-col py-3 px-5">
-              <span className="text-3xl group-hover:text-violet-600">
-                Ethan Michael
-              </span>
-              <span className="text-lg">Event Coordinator</span>
-            </div>
-          </div>
-          <div className="relative overflow-hidden group">
-            <img
-              src="https://i.ibb.co/MfJFs26/event-Designer1.jpg"
-              alt=""
-              className="w-full h-[450px] transition duration-300 hover:grayscale object-fill group-hover:scale-110"
-            />
-            <div className="bg-white absolute bottom-12 w-80 space-y-1 flex flex-col py-3 px-5">
-              <span className="text-3xl group-hover:text-violet-600">
-                Marie Johnson
-              </span>
-              <span className="text-lg">Event Designer</span>
-            </div>
-          </div>
-          <div className="relative overflow-hidden group">
-            <img
-              src="https://i.ibb.co/vYgvrw2/event-Design2.jpg"
-              alt=""
-              className="w-full h-[450px] transition duration-300 hover:grayscale object-fill group-hover:scale-110"
-            />
-            <div className="bg-white absolute bottom-12 w-80 space-y-1 flex flex-col py-3 px-5">
-              <span className="text-3xl group-hover:text-violet-600">
-                James Mitchell
-              </span>
-              <span className="text-lg">Event Designer</span>
-            </div>
-          </div>
-          <div className="relative overflow-hidden group">
-            <img
-              src="https://i.ibb.co/ByvBQmM/event-Design3.jpg"
-              alt=""
-              className="w-full h-[450px] transition duration-300 hover:grayscale object-fill group-hover:scale-110"
-            />
-            <div className="bg-white absolute bottom-12 w-80 space-y-1 flex flex-col py-3 px-5">
-              <span className="text-3xl group-hover:text-violet-600">
-                Olivia Grace
-              </span>
-              <span className="text-lg">Event Designer</span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       {/* Meet Our Team ends */}
