@@ -14,13 +14,20 @@ import "swiper/css/scrollbar";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import testimonialJson from "../jsons/testimonialInfo.json";
 import quotes from "../assets/straight-quotes.png";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdMarkEmailRead } from "react-icons/md";
+import { FaFacebook } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa6";
+import { FaYoutube } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
 
 const AboutUs = () => {
   const [counterOn, setCounterOn] = useState(false);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>
@@ -219,7 +226,7 @@ const AboutUs = () => {
               <img
                 src={member.image}
                 alt=""
-                className="w-full h-[450px] transition duration-300 hover:grayscale object-fill group-hover:scale-110"
+                className="w-full h-[450px] transition duration-300 hover:grayscale object-fill group-hover:scale-110 px-6 md:px-0"
               />
               <div className="bg-white absolute bottom-12 w-80 space-y-1 flex flex-col py-3 px-5">
                 <span className="text-3xl group-hover:text-[#e08534] text-[#033955]">
@@ -256,9 +263,9 @@ const AboutUs = () => {
             <SwiperSlide key={index}>
               <div className="flex flex-col justify-center items-center mt-12">
                 <div className="mb-14">
-                  <img src={quotes} className="w-[100px]" />
+                  <img src={quotes} className="w-[60px] md:w-[100px]" />
                 </div>
-                <h1 className="text-3xl font-bold max-w-3xl mx-auto text-center leading-normal">
+                <h1 className="text-2xl md:text-3xl font-bold lg:max-w-3xl lg:mx-auto text-center leading-normal mx-16">
                   {singleCustomer.message}
                 </h1>
                 <h1 className="text-xl text-center mt-10 font-semibold text-[#e08534]">
@@ -273,6 +280,113 @@ const AboutUs = () => {
         </Swiper>
       </div>
       {/* Testimonial Ends */}
+
+      {/* Contact us starts */}
+      <div className="my-12">
+        <SectionTitle
+          sub="Get Fit. Get Help."
+          heading="We're Here for You"
+          description="Have questions or need advice finding the perfect fitness accessories? Reach out today!"
+        />
+        <div className="w-full pb-12 px-6 mt-5 md:mt-0">
+          <div className="grid grid-cols-1 lg:grid-cols-3">
+            <div className="mb-8 lg:mb-0 w-full h-[580px] md:max-w-[550px] md:mx-auto md:h-[465px] lg:w-full lg:h-full bg-[#033955] text-white px-7 pb-5 rounded-md mt-4">
+              <div className="space-y-4">
+                <h1 className="text-4xl font-bold pt-10">
+                  Reach Out & Get Sweating!
+                </h1>
+                <p>
+                  We're here to support your fitness journey every step of the
+                  way. Whether you have questions about our products, need help
+                  choosing the right gear, or just want to chat with a fitness
+                  enthusiast, we'd love to hear from you! Our friendly team is
+                  available through multiple channels to ensure a quick and
+                  convenient connection. Let's get you on the path to achieving
+                  your fitness goals!
+                </p>
+                <div className="flex items-center gap-4">
+                  <FaLocationDot className="text-lg" />
+                  <span className="text-lg">Los Angeles, USA</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <FaPhoneAlt className="text-lg" />
+                  <span className="text-lg">(+01) 123 456 7890</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <MdMarkEmailRead className="text-lg" />
+                  <span className="text-lg">powerfit@domain.com</span>
+                </div>
+                <div className="flex items-center gap-8 mt-4">
+                  <FaFacebook className="text-xl hover:-translate-y-1" />
+                  <FaInstagram className="text-xl hover:-translate-y-1" />
+                  <FaYoutube className="text-xl hover:-translate-y-1" />
+                  <FaLinkedinIn className="text-xl hover:-translate-y-1" />
+                </div>
+              </div>
+            </div>
+            <div className="col-span-2 mt-7">
+              <div className="mx-auto w-full md:max-w-[550px]">
+                <form>
+                  <div className="mb-5">
+                    <label htmlFor="name" className="mb-3 block">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      placeholder="Full Name"
+                      className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium  outline-none focus:border-[#033955] focus:shadow-md"
+                    />
+                  </div>
+                  <div className="mb-5">
+                    <label htmlFor="email" className="mb-3 block">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="example@domain.com"
+                      className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium  outline-none focus:border-[#033955] focus:shadow-md"
+                    />
+                  </div>
+                  <div className="mb-5">
+                    <label htmlFor="subject" className="mb-3 block">
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      name="subject"
+                      id="subject"
+                      placeholder="Enter your subject"
+                      className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium  outline-none focus:border-[#033955] focus:shadow-md"
+                    />
+                  </div>
+                  <div className="mb-5">
+                    <label htmlFor="message" className="mb-3 block">
+                      Message
+                    </label>
+                    <textarea
+                      rows={4}
+                      name="message"
+                      id="message"
+                      placeholder="Type your message"
+                      className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium  outline-none focus:border-[#033955] focus:shadow-md"
+                    ></textarea>
+                  </div>
+                  <div>
+                    <button className="px-4 py-3 rounded-lg text-white btn-custom-two bg-[#033955] font-semibold">
+                      Contact Us
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Contact us ends */}
     </div>
   );
 };
