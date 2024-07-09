@@ -1,0 +1,34 @@
+[
+  {
+    "image": "https://images.pexels.com/photos/4325442/pexels-photo-4325442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "categoryName": "Strength Training"
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1652364653960-1c23c208ef43?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "categoryName": "Cardio"
+  },
+  {
+    "image": "https://i5.walmartimages.com/asr/cfeb2961-bb84-4acb-b7a0-db1c05a6f0e8.2d5f8fe99962689c9c56012967ae4fc9.jpeg",
+    "categoryName": "Bodyweight Training"
+  },
+  {
+    "image": "https://www.pro-tecathletics.com/wp-content/uploads/2018/09/Contoured-Foam-Roller-In-Use-1-min.jpg",
+    "categoryName": "Mobility Tools"
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1593234270120-189e191918a5?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "categoryName": "Functional Training"
+  },
+  {
+    "image": "https://domf5oio6qrcr.cloudfront.net/medialibrary/4095/w0116g16207253425664.jpg",
+    "categoryName": "Wearable Technology"
+  },
+  {
+    "image": "https://gearculture.com/wp-content/uploads/2013/03/speed-resistance-training-parachute1-618x520.jpg",
+    "categoryName": "Outdoor Fitness Gear"
+  },
+  {
+    "image": "https://images.unsplash.com/photo-1716307035615-1c6465a32ef2?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "categoryName": "Boxing & Martial Arts"
+  }
+]

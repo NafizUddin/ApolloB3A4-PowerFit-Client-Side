@@ -13,7 +13,7 @@ AOS.init();
 
 const Banner = () => {
   return (
-    <div>
+    <div className="mb-28 -z-20">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -30,7 +30,7 @@ const Banner = () => {
       >
         {bannerInfo.map((banner, index) => (
           <SwiperSlide key={index}>
-            <div className="relative lg:h-[540px]">
+            <div className="relative h-[630px] md:h-[560px] lg:h-[540px]">
               <img
                 src={banner?.bannerImg}
                 className="absolute inset-0 object-cover w-full h-full"
@@ -38,17 +38,17 @@ const Banner = () => {
               />
               <div className="relative bg-gray-900 bg-opacity-70 h-full">
                 <div
-                  className="flex flex-col justify-center items-center pt-40 pb-16 lg:pt-20 lg:pb-10 md:pt-36 md:pb-0"
+                  className="flex flex-col justify-center items-center pt-28 pb-16 lg:pt-20 lg:pb-10 md:pt-28 md:pb-0"
                   data-aos="zoom-in"
                   data-aos-duration="1400"
                 >
                   <h1 className="text-center neon-text text-xl font-bold mx-4 md:text-3xl mb-6">
                     {banner.heading_short}
                   </h1>
-                  <h1 className="text-center text-xl font-bold mx-4 md:text-5xl text-white max-w-2xl mb-6">
+                  <h1 className="text-center text-3xl font-bold mx-4 md:text-5xl text-white max-w-2xl mb-6">
                     {banner.heading}
                   </h1>
-                  <p className="text-white text-center max-w-3xl text-lg">
+                  <p className="text-white text-center lg:max-w-3xl lg:mx-auto text-lg mx-14 md:mx-20">
                     {banner.description}
                   </p>
                   <div className="mt-6">

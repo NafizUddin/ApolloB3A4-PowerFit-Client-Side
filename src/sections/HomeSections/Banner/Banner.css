@@ -11,9 +11,9 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-    width: 45px;
+    width: 40px;
     /* Adjust the size */
-    height: 45px;
+    height: 40px;
     /* Adjust the size */
     color: white;
     background-color: rgba(228, 131, 50, 255);

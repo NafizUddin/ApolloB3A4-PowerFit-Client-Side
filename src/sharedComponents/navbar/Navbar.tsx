@@ -106,14 +106,14 @@ const Navbar = () => {
                 </svg>
               </label>
             </div>
-            <div className="mx-2 flex-1 px-2">
+            <div className="mx-2 px-2 flex-1 ml-8 md:ml-40 lg:ml-0">
               <img
                 src={logo}
                 alt=""
                 className="w-[230px] md:w-[270px] lg:w-[180px] xl:w-[270px]"
               />
             </div>
-            <div className="hidden flex-none lg:block">
+            <div className="hidden flex-none lg:block px-3">
               <ul className="flex gap-6 text-[#033955] font-semibold text-lg">
                 {/* Navbar menu content here */}
                 {links}
@@ -123,7 +123,7 @@ const Navbar = () => {
           {/* Page content here */}
           {/* Content */}
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side z-10">
           <label
             htmlFor="my-drawer-3"
             aria-label="close sidebar"
