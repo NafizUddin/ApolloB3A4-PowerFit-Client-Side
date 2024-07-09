@@ -3,17 +3,24 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import CountUp from "react-countup";
 import { useEffect, useState } from "react";
 import ScrollTrigger from "react-scroll-trigger";
-import { Link } from "react-router-dom";
 import { FiTarget } from "react-icons/fi";
 import SectionTitle from "../components/sectionTitle/SectionTitle";
 import teamInfo from "../jsons/teamInfo.json";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/scrollbar";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import testimonialJson from "../jsons/testimonialInfo.json";
+import quotes from "../assets/straight-quotes.png";
 
 const AboutUs = () => {
   const [counterOn, setCounterOn] = useState(false);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
     <div>
@@ -227,33 +234,45 @@ const AboutUs = () => {
         </div>
       </div>
       {/* Meet Our Team ends */}
-      {/* Extra Banner starts */}
-      <div className="my-14">
-        <div
-          style={{
-            backgroundImage:
-              "url('https://shadiparty.com/wp-content/uploads/2017/09/gallery-corporate_event-23.jpg')",
+      {/* Testimonial starts */}
+      <div className="my-24">
+        <SectionTitle
+          sub="Hear from Our Customers"
+          heading="Real People. Real Results."
+          description="See what our customers are saying about how our fitness accessories have helped them achieve their goals."
+        />
+        <Swiper
+          spaceBetween={30}
+          centeredSlides={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
           }}
-          className="w-full h-[450px] bg-center bg-cover bg-fixed text-white"
+          navigation={true}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mySwiper"
         >
-          <div className="w-full h-full bg-gray-700/80 flex flex-col justify-center items-center">
-            <h1 className="text-2xl md:text-4xl leading-relaxed text-center">
-              Don&apos;t Hesitate to Use Our Services,
-              <br /> Your Event & Party Will Be Special!
-            </h1>
-            <p className="max-w-xl pt-3 pb-5 text-center text-sm md:text-base">
-              Experience the difference as our dedicated team ensures every
-              detail is flawlessly executed, making your event and party truly
-              exceptional.
-            </p>
-            <Link to="/contact">
-              <button className="py-3 px-5 rounded-lg bg-violet-500 text-white">
-                Get In Touch
-              </button>
-            </Link>
-          </div>
-        </div>
+          {testimonialJson.map((singleCustomer, index) => (
+            <SwiperSlide key={index}>
+              <div className="flex flex-col justify-center items-center mt-12">
+                <div className="mb-14">
+                  <img src={quotes} className="w-[100px]" />
+                </div>
+                <h1 className="text-3xl font-bold max-w-3xl mx-auto text-center leading-normal">
+                  {singleCustomer.message}
+                </h1>
+                <h1 className="text-xl text-center mt-10 font-semibold text-[#e08534]">
+                  {singleCustomer.name}
+                </h1>
+                <h1 className="text-gray-500 mt-3">
+                  {singleCustomer.designation}
+                </h1>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
+      {/* Testimonial Ends */}
     </div>
   );
 };
