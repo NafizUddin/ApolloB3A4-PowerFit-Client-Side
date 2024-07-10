@@ -4,6 +4,7 @@ import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import AboutUs from "../pages/AboutUs";
 import AllProducts from "../pages/AllProducts";
+import CategoryWiseProducts from "../pages/CategoryWiseProducts";
 
 const MainRoute = createBrowserRouter([
   {
@@ -20,8 +21,12 @@ const MainRoute = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: "products/:category",
+        path: "products",
         element: <AllProducts />,
+      },
+      {
+        path: "products/:category",
+        element: <CategoryWiseProducts />,
       },
     ],
   },

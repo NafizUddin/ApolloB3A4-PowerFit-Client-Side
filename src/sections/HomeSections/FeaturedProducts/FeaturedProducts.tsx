@@ -3,6 +3,7 @@ import FeaturedProductLoading from "../../../components/FeaturedProductLoading/F
 import HomeProductCard from "../../../components/HomeProductCard/HomeProductCard";
 import { useContext } from "react";
 import ProductContext from "../../../context/ProductContext";
+import { Link } from "react-router-dom";
 
 const FeaturedProducts = () => {
   const { products, isLoading } = useContext(ProductContext);
@@ -19,6 +20,13 @@ const FeaturedProducts = () => {
         {featuredProducts?.map((singleProduct: TProduct) => (
           <HomeProductCard key={singleProduct?._id} {...singleProduct} />
         ))}
+      </div>
+      <div className="flex justify-center items-center mt-14">
+        <Link to="/products">
+          <button className="bg-[#e08534] text-white font-bold py-2 px-4 rounded btn-custom">
+            View All Products
+          </button>
+        </Link>
       </div>
     </div>
   );

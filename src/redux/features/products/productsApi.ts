@@ -3,13 +3,29 @@ import { baseApi } from "../../api/baseApi";
 const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: (category) => {
-        if (category) {
-          return {
-            url: `/products?category=${category}`,
-            method: "GET",
-          };
+      query: (queryObj) => {
+        if (queryObj?.sort) {
+          const sortValue = queryObj.sort;
+
+          if (sortValue === "descending") {
+            return {
+              url: "/products?sort=-price",
+              method: "GET",
+            };
+          } else {
+            return {
+              url: "/products?sort=price",
+              method: "GET",
+            };
+          }
         }
+
+        // if (queryObj?.category) {
+        //   return {
+        //     url: `/products?category=${queryObj?.category}`,
+        //     method: "GET",
+        //   };
+        // }
 
         return {
           url: "/products",
