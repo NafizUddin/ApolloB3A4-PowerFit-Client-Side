@@ -1,14 +1,13 @@
 import { TProduct } from "@/types/productType";
 import FeaturedProductLoading from "../../../components/FeaturedProductLoading/FeaturedProductLoading";
-import { useGetProductsQuery } from "../../../redux/features/products/productsApi";
 import HomeProductCard from "../../../components/HomeProductCard/HomeProductCard";
+import { useContext } from "react";
+import ProductContext from "../../../context/ProductContext";
 
 const FeaturedProducts = () => {
-  const { data: products, isLoading } = useGetProductsQuery(undefined);
+  const { products, isLoading } = useContext(ProductContext);
 
-  const featuredProducts = products?.data.slice(0, 8);
-
-  console.log(featuredProducts);
+  const featuredProducts = products?.slice(0, 8);
 
   return (
     <div className="mb-28 mx-7 md:mx-8 xl:mx-0">

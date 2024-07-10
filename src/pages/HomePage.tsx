@@ -3,19 +3,29 @@ import Banner from "../sections/HomeSections/Banner/Banner";
 import ProductCategory from "../sections/HomeSections/Category/ProductCategory";
 import Gallery from "../sections/HomeSections/Gallery/Gallery";
 import FeaturedProducts from "../sections/HomeSections/FeaturedProducts/FeaturedProducts";
+import { useGetProductsQuery } from "../redux/features/products/productsApi";
+import ProductContext from "../context/ProductContext";
 
 const HomePage = () => {
+  const { data: productsResponse, isLoading } = useGetProductsQuery(undefined);
+
+  const products = productsResponse?.data;
+
+  const value = { products, isLoading };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div>
-      <Banner />
-      <ProductCategory />
-      <FeaturedProducts />
-      <Gallery />
-    </div>
+    <ProductContext.Provider value={value}>
+      <div>
+        <Banner />
+        <ProductCategory />
+        <FeaturedProducts />
+        <Gallery />
+      </div>
+    </ProductContext.Provider>
   );
 };
 
