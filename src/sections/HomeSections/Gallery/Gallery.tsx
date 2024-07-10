@@ -51,40 +51,40 @@ const Gallery = () => {
         <div className="grid gap-4">
           <div>
             <img
-              className="h-auto max-w-full rounded-lg"
-              src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"
+              className="h-[246px] md:h-[229px] lg:h-[318px] xl:h-[429px] w-full rounded-lg object-cover"
+              src="https://images.unsplash.com/photo-1601106605547-7423365f86e0?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
           </div>
           <div>
             <img
-              className="h-auto max-w-full rounded-lg"
-              src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"
+              className="h-[135px] md:h-[125px] lg:h-[173px] xl:h-[234px] w-full rounded-lg object-cover"
+              src="https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?q=80&w=1450&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
           </div>
           <div>
             <img
-              className="h-auto max-w-full rounded-lg"
-              src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"
+              className="h-[150px] md:h-[140px] lg:h-[194px] xl:h-[262px] w-full rounded-lg object-cover"
+              src="https://images.unsplash.com/photo-1604480133080-602261a680df?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
           </div>
         </div>
         <div className="grid gap-4">
           <div>
             <img
-              className="h-auto max-w-full rounded-lg"
-              src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"
+              className="h-[122px] md:h-[113px] lg:h-[158px] xl:h-[213px] w-full rounded-lg object-cover"
+              src="https://images.unsplash.com/photo-1597452485677-d661670d9640?q=80&w=1372&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
           </div>
           <div>
             <img
-              className="h-auto max-w-full rounded-lg"
-              src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"
+              className="h-[296px] md:h-[275px] lg:h-[383px] xl:h-[517px] w-full rounded-lg object-cover"
+              src="https://images.unsplash.com/photo-1606889464198-fcb18894cf50?q=80&w=1390&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
           </div>
           <div>
             <img
-              className="h-auto max-w-full rounded-lg"
-              src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"
+              className="h-[113px] md:h-[105px] lg:h-[145px] xl:h-[196px] w-full rounded-lg object-cover"
+              src="https://images.unsplash.com/photo-1508215885820-4585e56135c8?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
           </div>
         </div>
