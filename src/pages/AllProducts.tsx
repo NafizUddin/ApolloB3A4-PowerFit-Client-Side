@@ -6,13 +6,24 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { FaSort } from "react-icons/fa";
 import { TProduct } from "../types/productType";
 import HomeProductCard from "../components/HomeProductCard/HomeProductCard";
+import categoryJson from "../jsons/productCategory.json";
+import { BiCategoryAlt } from "react-icons/bi";
 
 const AllProducts = () => {
   const [selectedSort, setSelectedSort] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [isResetButtonEnabled, setIsResetButtonEnabled] = useState(false);
+  const [checkedState, setCheckedState] = useState(
+    categoryJson.reduce((acc, category) => {
+      acc[category?.categoryName] = false;
+      return acc;
+    }, {} as Record<string, boolean>)
+  );
+
   const [queryObj, setQueryObj] = useState({
     sort: selectedSort,
     searchTerm: searchTerm,
+    categories: checkedState,
   });
 
   const { data: productsResponse, isLoading } = useGetProductsQuery(queryObj);
@@ -33,10 +44,36 @@ const AllProducts = () => {
     console.log("Search term:", searchTerm);
   };
 
+  const handleCheckboxChange = (categoryName: string) => {
+    setCheckedState((prevState) => {
+      const newState = {
+        ...prevState,
+        [categoryName]: !prevState[categoryName],
+      };
+      setIsResetButtonEnabled(
+        Object.values(newState).some((checked) => checked)
+      );
+      return newState;
+    });
+  };
+
+  const handleReset = () => {
+    const resetState = Object.keys(checkedState).reduce((acc, key) => {
+      acc[key] = false;
+      return acc;
+    }, {} as Record<string, boolean>);
+    setCheckedState(resetState);
+    setIsResetButtonEnabled(false);
+  };
+
   useEffect(() => {
     // Update queryObj whenever selectedSort changes
-    setQueryObj({ sort: selectedSort, searchTerm: searchTerm });
-  }, [selectedSort, searchTerm]);
+    setQueryObj({
+      sort: selectedSort,
+      searchTerm: searchTerm,
+      categories: checkedState,
+    });
+  }, [selectedSort, searchTerm, checkedState]);
 
   return (
     <div className="mt-8">
@@ -100,6 +137,70 @@ const AllProducts = () => {
                     </div>
                   </form>
                   {/* SearchBar ends */}
+                  <div className="mt-7">
+                    <div className="flex gap-3 items-center">
+                      <BiCategoryAlt className="text-3xl" />
+                      <h1 className="text-3xl font-semibold">Categories</h1>
+                    </div>
+
+                    <div className="flex flex-col gap-3 mt-5">
+                      {categoryJson?.map((singleCategory) => (
+                        <div key={singleCategory.categoryName}>
+                          <label className="inline-flex items-center">
+                            <input
+                              type="checkbox"
+                              className="hidden"
+                              checked={
+                                checkedState[singleCategory.categoryName]
+                              }
+                              onChange={() =>
+                                handleCheckboxChange(
+                                  singleCategory.categoryName
+                                )
+                              }
+                            />
+                            <span
+                              className={`w-6 h-6 inline-block rounded-full border-2 ${
+                                checkedState[singleCategory.categoryName]
+                                  ? "border-orange-500 bg-orange-500"
+                                  : "border-gray-300"
+                              } flex items-center justify-center cursor-pointer`}
+                            >
+                              {checkedState[singleCategory.categoryName] && (
+                                <svg
+                                  className="w-4 h-4 text-white"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 5.707 8.293a1 1 0 10-1.414 1.414l4 4a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"
+                                    clipRule="evenodd"
+                                  />
+                                </svg>
+                              )}
+                            </span>
+                            <span className="select-none ml-3 text-xl">
+                              {singleCategory.categoryName}
+                            </span>
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={handleReset}
+                      disabled={!isResetButtonEnabled}
+                      className={`mt-5 px-4 py-2 rounded ${
+                        isResetButtonEnabled
+                          ? "bg-[#e08534] btn-custom text-white cursor-pointer"
+                          : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                      }`}
+                    >
+                      Reset Filters
+                    </button>
+                  </div>
+
                   <div className="my-6">
                     <img src="https://demo.ishithemes.com/opencart/OPC162/OPC162/image/cache/catalog/other/Left-banner-367x416.png" />
                   </div>

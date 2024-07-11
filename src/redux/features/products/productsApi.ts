@@ -1,19 +1,38 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prefer-const */
 import { baseApi } from "../../api/baseApi";
 
 const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: (queryObj) => {
-        const { searchTerm, sort } = queryObj || {};
+        const { searchTerm, sort, categories } = queryObj || {};
+
+        // map() iterates through the filtered key-value pairs and directly extracts the key (category) using array destructuring with [key].
+
+        const filteredCategories = Object.entries(categories)
+          .filter(([key, value]) => value === true)
+          .map(([key]) => key);
+
         let url = "/products";
+        // URLSearchParams used to construct the query string dynamically. It simplifies appending multiple query parameters.
+        let params = new URLSearchParams();
 
         if (searchTerm) {
-          url += `?searchTerm=${searchTerm}`;
+          params.append("searchTerm", searchTerm);
         }
 
         if (sort) {
           const sortValue = sort === "descending" ? "-price" : "price";
-          url += searchTerm ? `&sort=${sortValue}` : `?sort=${sortValue}`;
+          params.append("sort", sortValue);
+        }
+
+        filteredCategories.forEach((category) => {
+          params.append("category", category);
+        });
+
+        if (params.toString()) {
+          url += `?${params.toString()}`;
         }
 
         return {
