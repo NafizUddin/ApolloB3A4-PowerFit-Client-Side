@@ -4,7 +4,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import "./Banner.css";
+import "../../../layouts/mainLayout/MainLayout.css";
 import bannerInfo from "../../../jsons/bannerInfo.json";
 import AOS from "aos";
 import "aos/dist/aos.css";

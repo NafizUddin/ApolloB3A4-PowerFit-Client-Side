@@ -7,7 +7,13 @@ import { useGetProductsQuery } from "../redux/features/products/productsApi";
 import ProductContext from "../context/ProductContext";
 
 const HomePage = () => {
-  const { data: productsResponse, isLoading } = useGetProductsQuery(undefined);
+  const queryObj = {
+    sort: "",
+    searchTerm: "",
+    categories: "",
+  };
+
+  const { data: productsResponse, isLoading } = useGetProductsQuery(queryObj);
 
   const products = productsResponse?.data;
 

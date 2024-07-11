@@ -8,11 +8,17 @@ import { TProduct } from "../types/productType";
 import HomeProductCard from "../components/HomeProductCard/HomeProductCard";
 import categoryJson from "../jsons/productCategory.json";
 import { BiCategoryAlt } from "react-icons/bi";
+import Slider from "react-slider";
+import { IoIosPricetags } from "react-icons/io";
+import "../layouts/mainLayout/MainLayout.css";
 
 const AllProducts = () => {
   const [selectedSort, setSelectedSort] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [isResetButtonEnabled, setIsResetButtonEnabled] = useState(false);
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(100);
+
   const [checkedState, setCheckedState] = useState(
     categoryJson.reduce((acc, category) => {
       acc[category?.categoryName] = false;
@@ -24,6 +30,10 @@ const AllProducts = () => {
     sort: selectedSort,
     searchTerm: searchTerm,
     categories: checkedState,
+    priceRange: {
+      minPrice: minValue,
+      maxPrice: maxValue,
+    },
   });
 
   const { data: productsResponse, isLoading } = useGetProductsQuery(queryObj);
@@ -66,14 +76,27 @@ const AllProducts = () => {
     setIsResetButtonEnabled(false);
   };
 
+  const handleSliderChange = (values: number[]) => {
+    setMinValue(values[0]);
+    setMaxValue(values[1]);
+  };
+
   useEffect(() => {
     // Update queryObj whenever selectedSort changes
     setQueryObj({
       sort: selectedSort,
       searchTerm: searchTerm,
       categories: checkedState,
+      priceRange: {
+        minPrice: minValue,
+        maxPrice: maxValue,
+      },
     });
-  }, [selectedSort, searchTerm, checkedState]);
+  }, [selectedSort, searchTerm, checkedState, minValue, maxValue]);
+
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
     <div className="mt-8">
@@ -137,6 +160,8 @@ const AllProducts = () => {
                     </div>
                   </form>
                   {/* SearchBar ends */}
+
+                  {/*All Category starts */}
                   <div className="mt-7">
                     <div className="flex gap-3 items-center">
                       <BiCategoryAlt className="text-3xl" />
@@ -187,7 +212,30 @@ const AllProducts = () => {
                         </div>
                       ))}
                     </div>
+                  </div>
+                  {/* All Category ends */}
 
+                  <div className="mt-7 space-y-7">
+                    <div className="flex gap-3 items-center">
+                      <IoIosPricetags className="text-3xl" />
+                      <h1 className="text-3xl font-semibold">Price</h1>
+                    </div>
+
+                    <Slider
+                      className="slider"
+                      min={0}
+                      max={100}
+                      step={1} // adjust step value for finer control
+                      value={[minValue, maxValue]}
+                      onChange={handleSliderChange}
+                    />
+
+                    <p className="text-xl font-medium">
+                      Price Range: ${minValue} - ${maxValue}
+                    </p>
+                  </div>
+
+                  <div className="mt-7">
                     <button
                       onClick={handleReset}
                       disabled={!isResetButtonEnabled}
@@ -201,9 +249,11 @@ const AllProducts = () => {
                     </button>
                   </div>
 
+                  {/* Category image starts */}
                   <div className="my-6">
                     <img src="https://demo.ishithemes.com/opencart/OPC162/OPC162/image/cache/catalog/other/Left-banner-367x416.png" />
                   </div>
+                  {/* Category image ends */}
                 </div>
                 <div className="lg:col-span-4">
                   <div>
