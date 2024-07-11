@@ -10,7 +10,7 @@ const ProductCategory = () => {
       <div className="my-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         {productCategory.map((category, index) => (
           <div key={index}>
-            <Link to={`/products/${category.categoryName}`}>
+            <Link to={`/categoryProducts/${category.categoryName}`}>
               <div className="relative max-w-xl mx-auto cursor-pointer group overflow-hidden">
                 <img
                   className="h-[300px] w-full object-cover rounded-md group-hover:scale-110 transition duration-300"

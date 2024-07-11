@@ -1,7 +1,7 @@
 import { TProduct } from "@/types/productType";
 import FeaturedProductLoading from "../../../components/FeaturedProductLoading/FeaturedProductLoading";
 import HomeProductCard from "../../../components/HomeProductCard/HomeProductCard";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import ProductContext from "../../../context/ProductContext";
 import { Link } from "react-router-dom";
 

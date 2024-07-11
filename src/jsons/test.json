@@ -1,0 +1,362 @@
+[
+  {
+    "name": "Hex Dumbbell Set",
+    "price": 150.0,
+    "stockQuantity": 20,
+    "description": "A set of hex dumbbells ranging from 5 to 50 pounds. Ideal for both home and gym use. Made with high-quality materials for durability and longevity.",
+    "benefits": "Great for a wide range of strength training exercises. Helps in building muscle and improving bone density. Compact and easy to store.",
+    "image": "hex_dumbbell_set.jpg",
+    "category": "Strength Training Equipment"
+  },
+  {
+    "name": "Adjustable Bench Press",
+    "price": 250.0,
+    "stockQuantity": 10,
+    "description": "Adjustable bench press with multiple incline and decline settings. Perfect for a variety of strength training exercises. Built with a sturdy frame to support intense workouts.",
+    "benefits": "Allows for a wide range of exercises targeting different muscle groups. Enhances upper body strength and stability. Foldable design for space-saving storage.",
+    "image": "adjustable_bench_press.jpg",
+    "category": "Strength Training Equipment"
+  },
+  {
+    "name": "Olympic Barbell",
+    "price": 200.0,
+    "stockQuantity": 15,
+    "description": "Standard 45-pound Olympic barbell suitable for all types of lifts. Features a knurled grip for secure handling. Designed to withstand heavy weights and repeated use.",
+    "benefits": "Ideal for various strength training exercises like squats and deadlifts. Helps in building muscle mass and improving overall strength. Durable and long-lasting construction.",
+    "image": "olympic_barbell.jpg",
+    "category": "Strength Training Equipment"
+  },
+  {
+    "name": "Weight Plate Set",
+    "price": 300.0,
+    "stockQuantity": 25,
+    "description": "A complete set of weight plates ranging from 2.5 to 45 pounds. Perfect for progressive strength training. Coated to resist rust and corrosion.",
+    "benefits": "Versatile for various lifting exercises. Easy to handle and store. Enhances strength training routines by adding resistance.",
+    "image": "weight_plate_set.jpg",
+    "category": "Strength Training Equipment"
+  },
+  {
+    "name": "Kettlebell Set",
+    "price": 120.0,
+    "stockQuantity": 30,
+    "description": "A set of kettlebells ranging from 5 to 50 pounds. Great for dynamic strength and conditioning workouts. Ergonomically designed for a comfortable grip.",
+    "benefits": "Perfect for full-body workouts and improving core strength. Helps in enhancing endurance and flexibility. Compact and easy to store.",
+    "image": "kettlebell_set.jpg",
+    "category": "Strength Training Equipment"
+  },
+  {
+    "name": "Treadmill X1000",
+    "price": 800.0,
+    "stockQuantity": 5,
+    "description": "High-end treadmill with multiple speed settings and incline options. Features a digital display for tracking performance. Built for durability and smooth operation.",
+    "benefits": "Great for indoor cardio workouts. Helps in improving cardiovascular health and endurance. Foldable design for easy storage.",
+    "image": "treadmill_x1000.jpg",
+    "category": "Cardio Equipment"
+  },
+  {
+    "name": "Stationary Bike Pro",
+    "price": 600.0,
+    "stockQuantity": 8,
+    "description": "Professional stationary bike with adjustable resistance and digital display. Provides a smooth and quiet ride. Ideal for intense cardio workouts and endurance training.",
+    "benefits": "Low-impact cardio exercise that reduces joint strain. Helps in burning calories and improving heart health. Adjustable settings to suit all fitness levels.",
+    "image": "stationary_bike_pro.jpg",
+    "category": "Cardio Equipment"
+  },
+  {
+    "name": "Rowing Machine",
+    "price": 500.0,
+    "stockQuantity": 12,
+    "description": "Compact rowing machine with adjustable resistance levels. Perfect for full-body cardio and strength training. Features a comfortable seat and ergonomic handle.",
+    "benefits": "Provides a full-body workout engaging multiple muscle groups. Improves cardiovascular health and endurance. Compact design for easy storage.",
+    "image": "rowing_machine.jpg",
+    "category": "Cardio Equipment"
+  },
+  {
+    "name": "Elliptical Trainer",
+    "price": 700.0,
+    "stockQuantity": 6,
+    "description": "Elliptical trainer with multiple workout programs and heart rate monitor. Low-impact cardio machine suitable for all fitness levels. Designed for smooth and natural motion.",
+    "benefits": "Low-impact exercise reduces stress on joints. Effective for burning calories and improving cardiovascular health. Multiple resistance levels for varied workouts.",
+    "image": "elliptical_trainer.jpg",
+    "category": "Cardio Equipment"
+  },
+  {
+    "name": "Jump Rope",
+    "price": 15.0,
+    "stockQuantity": 100,
+    "description": "Durable jump rope for cardio and endurance training. Lightweight and easy to carry. Adjustable length to suit all users.",
+    "benefits": "Great for improving cardiovascular fitness and coordination. Helps in burning calories quickly. Portable and easy to use anywhere.",
+    "image": "jump_rope.jpg",
+    "category": "Cardio Equipment"
+  },
+  {
+    "name": "Pull-Up Bar",
+    "price": 50.0,
+    "stockQuantity": 40,
+    "description": "Heavy-duty pull-up bar for doorway or wall mounting. Easy to install and use. Supports various exercises for upper body strength.",
+    "benefits": "Enhances upper body and core strength. Versatile for different pull-up variations. Space-saving design fits in most doorways.",
+    "image": "pull_up_bar.jpg",
+    "category": "Bodyweight Training Equipment"
+  },
+  {
+    "name": "Dip Station",
+    "price": 100.0,
+    "stockQuantity": 25,
+    "description": "Stable dip station for tricep dips and bodyweight exercises. Compact design fits in small spaces. Non-slip grips for added safety and comfort.",
+    "benefits": "Targets triceps, chest, and shoulders. Enhances upper body strength. Compact and sturdy for home use.",
+    "image": "dip_station.jpg",
+    "category": "Bodyweight Training Equipment"
+  },
+  {
+    "name": "Gymnastic Rings",
+    "price": 70.0,
+    "stockQuantity": 35,
+    "description": "Adjustable gymnastic rings for advanced bodyweight training. Perfect for improving strength and flexibility. Made from durable materials to withstand intense use.",
+    "benefits": "Enhances upper body and core strength. Versatile for a variety of exercises. Portable and easy to set up anywhere.",
+    "image": "gymnastic_rings.jpg",
+    "category": "Bodyweight Training Equipment"
+  },
+  {
+    "name": "Push-Up Bars",
+    "price": 30.0,
+    "stockQuantity": 50,
+    "description": "Ergonomic push-up bars for improved push-up form. Lightweight and portable. Enhances upper body and core strength.",
+    "benefits": "Reduces strain on wrists during push-ups. Helps in achieving deeper push-ups for better results. Portable and easy to store.",
+    "image": "push_up_bars.jpg",
+    "category": "Bodyweight Training Equipment"
+  },
+  {
+    "name": "Ab Roller",
+    "price": 25.0,
+    "stockQuantity": 60,
+    "description": "Ab roller for core strengthening exercises. Compact and easy to store. Designed for smooth and controlled motion.",
+    "benefits": "Targets core muscles effectively. Helps in building abdominal strength and stability. Portable and easy to use at home.",
+    "image": "ab_roller.jpg",
+    "category": "Bodyweight Training Equipment"
+  },
+  {
+    "name": "Foam Roller",
+    "price": 20.0,
+    "stockQuantity": 80,
+    "description": "High-density foam roller for muscle recovery and flexibility. Ideal for self-myofascial release. Lightweight and portable for easy use at home or the gym.",
+    "benefits": "Helps in reducing muscle soreness and tightness. Improves flexibility and range of motion. Easy to use for self-massage and recovery.",
+    "image": "foam_roller.jpg",
+    "category": "Flexibility and Mobility Tools"
+  },
+  {
+    "name": "Resistance Bands",
+    "price": 30.0,
+    "stockQuantity": 90,
+    "description": "Set of resistance bands with varying levels of resistance. Perfect for strength training and flexibility exercises. Compact and easy to carry for workouts on the go.",
+    "benefits": "Versatile for a variety of exercises targeting different muscle groups. Great for strength training and rehabilitation. Lightweight and portable for easy use anywhere.",
+    "image": "resistance_bands.jpg",
+    "category": "Flexibility and Mobility Tools"
+  },
+  {
+    "name": "Massage Ball",
+    "price": 10.0,
+    "stockQuantity": 150,
+    "description": "Massage ball for targeting sore muscles and trigger points. Small and portable for use anywhere. Helps improve blood circulation and relieve tension.",
+    "benefits": "Effective for deep tissue massage and pain relief. Easy to carry and use on the go. Helps in reducing muscle knots and improving flexibility.",
+    "image": "massage_ball.jpg",
+    "category": "Flexibility and Mobility Tools"
+  },
+  {
+    "name": "Stretching Strap",
+    "price": 15.0,
+    "stockQuantity": 70,
+    "description": "Durable stretching strap for improving flexibility. Multiple loops for adjustable length. Ideal for yoga, pilates, and general stretching exercises.",
+    "benefits": "Helps in deepening stretches and improving flexibility. Great for yoga and pilates routines. Lightweight and easy to carry.",
+    "image": "stretching_strap.jpg",
+    "category": "Flexibility and Mobility Tools"
+  },
+  {
+    "name": "Yoga Block",
+    "price": 12.0,
+    "stockQuantity": 60,
+    "description": "High-density yoga block for support and stability. Non-slip surface for secure grip. Perfect for various yoga poses and stretches.",
+    "benefits": "Provides support and stability for challenging poses. Helps in improving flexibility and balance. Lightweight and easy to carry.",
+    "image": "yoga_block.jpg",
+    "category": "Flexibility and Mobility Tools"
+  },
+  {
+    "name": "Battle Rope",
+    "price": 100.0,
+    "stockQuantity": 20,
+    "description": "Heavy-duty battle rope for high-intensity workouts. Perfect for strength and conditioning training. Comes with protective sleeve for durability.",
+    "benefits": "Great for full-body workouts and cardiovascular endurance. Helps in building muscle and burning fat. Durable construction for long-lasting use.",
+    "image": "battle_rope.jpg",
+    "category": "Functional Training Equipment"
+  },
+  {
+    "name": "Medicine Ball",
+    "price": 40.0,
+    "stockQuantity": 30,
+    "description": "Versatile medicine ball for dynamic strength training. Available in various weights. Ideal for explosive movements and core exercises.",
+    "benefits": "Enhances strength, coordination, and balance. Perfect for functional and dynamic exercises. Durable and easy to handle.",
+    "image": "medicine_ball.jpg",
+    "category": "Functional Training Equipment"
+  },
+  {
+    "name": "Sandbag Trainer",
+    "price": 60.0,
+    "stockQuantity": 25,
+    "description": "Adjustable sandbag trainer for versatile strength workouts. Multiple handles for varied grips. Made from durable materials to withstand tough workouts.",
+    "benefits": "Great for functional strength and conditioning. Helps in improving grip strength and stability. Versatile for various exercises.",
+    "image": "sandbag_trainer.jpg",
+    "category": "Functional Training Equipment"
+  },
+  {
+    "name": "Plyo Box",
+    "price": 90.0,
+    "stockQuantity": 15,
+    "description": "Sturdy plyo box for plyometric training and HIIT workouts. Available in multiple heights. Non-slip surface for added safety.",
+    "benefits": "Perfect for improving explosive power and agility. Enhances leg strength and coordination. Durable and stable for intense workouts.",
+    "image": "plyo_box.jpg",
+    "category": "Functional Training Equipment"
+  },
+  {
+    "name": "Slam Ball",
+    "price": 35.0,
+    "stockQuantity": 40,
+    "description": "Heavy-duty slam ball for explosive strength training. Available in various weights. Textured surface for a secure grip.",
+    "benefits": "Great for high-intensity workouts and power training. Helps in improving strength and coordination. Durable and designed to withstand repeated slamming.",
+    "image": "slam_ball.jpg",
+    "category": "Functional Training Equipment"
+  },
+  {
+    "name": "Smart Fitness Tracker",
+    "price": 150.0,
+    "stockQuantity": 50,
+    "description": "Advanced fitness tracker with heart rate monitor and GPS. Tracks steps, distance, calories burned, and sleep patterns. Syncs with mobile apps for detailed analysis.",
+    "benefits": "Monitors overall fitness and health metrics. Helps in setting and achieving fitness goals. Provides detailed insights and data tracking.",
+    "image": "smart_fitness_tracker.jpg",
+    "category": "Wearable Fitness Technology"
+  },
+  {
+    "name": "Smartwatch",
+    "price": 200.0,
+    "stockQuantity": 40,
+    "description": "Multi-functional smartwatch with fitness tracking features. Monitors heart rate, workout intensity, and stress levels. Water-resistant for swimming and outdoor activities.",
+    "benefits": "Tracks multiple fitness metrics for comprehensive monitoring. Water-resistant design for versatile use. Connects with apps for detailed data analysis.",
+    "image": "smartwatch.jpg",
+    "category": "Wearable Fitness Technology"
+  },
+  {
+    "name": "Heart Rate Monitor",
+    "price": 80.0,
+    "stockQuantity": 60,
+    "description": "Accurate heart rate monitor for tracking exercise intensity. Displays real-time heart rate zones. Lightweight and comfortable for all-day wear.",
+    "benefits": "Provides accurate heart rate data for optimized workouts. Helps in monitoring and maintaining exercise intensity. Comfortable for extended use.",
+    "image": "heart_rate_monitor.jpg",
+    "category": "Wearable Fitness Technology"
+  },
+  {
+    "name": "GPS Running Watch",
+    "price": 180.0,
+    "stockQuantity": 30,
+    "description": "GPS running watch with route tracking and performance metrics. Built-in music storage and Bluetooth connectivity. Ideal for runners and outdoor enthusiasts.",
+    "benefits": "Tracks running routes and performance metrics accurately. Built-in music storage for convenient workouts. Ideal for monitoring and improving running performance.",
+    "image": "gps_running_watch.jpg",
+    "category": "Wearable Fitness Technology"
+  },
+  {
+    "name": "Bluetooth Headphones",
+    "price": 120.0,
+    "stockQuantity": 70,
+    "description": "Wireless Bluetooth headphones with sweat resistance. Enhanced bass and noise isolation for immersive sound. Lightweight and ergonomic design for a secure fit.",
+    "benefits": "Provides high-quality sound for an immersive experience. Sweat-resistant design for intense workouts. Lightweight and comfortable for extended use.",
+    "image": "bluetooth_headphones.jpg",
+    "category": "Wearable Fitness Technology"
+  },
+  {
+    "name": "Agility Ladder",
+    "price": 30.0,
+    "stockQuantity": 50,
+    "description": "Agility ladder for speed and footwork drills. Adjustable rung spacing for varying difficulty levels. Includes carry bag for easy transport.",
+    "benefits": "Improves speed, agility, and coordination. Adjustable for different training needs. Portable and easy to set up.",
+    "image": "agility_ladder.jpg",
+    "category": "Outdoor Fitness Gear"
+  },
+  {
+    "name": "Resistance Parachute",
+    "price": 40.0,
+    "stockQuantity": 45,
+    "description": "Resistance parachute for sprint training and speed improvement. Adjustable waist belt fits all sizes. Durable nylon fabric for reliable performance.",
+    "benefits": "Enhances sprint speed and explosive power. Adjustable for a secure and comfortable fit. Durable for long-term use.",
+    "image": "resistance_parachute.jpg",
+    "category": "Outdoor Fitness Gear"
+  },
+  {
+    "name": "Weighted Vest",
+    "price": 70.0,
+    "stockQuantity": 30,
+    "description": "Adjustable weighted vest for adding resistance to workouts. Evenly distributed weights for comfort and balance. Ideal for strength training, running, and calisthenics.",
+    "benefits": "Increases workout intensity for better results. Even weight distribution for comfort. Adjustable to fit different body sizes.",
+    "image": "weighted_vest.jpg",
+    "category": "Outdoor Fitness Gear"
+  },
+  {
+    "name": "Training Cones",
+    "price": 20.0,
+    "stockQuantity": 100,
+    "description": "Set of training cones for agility and speed drills. Brightly colored for visibility on any surface. Stackable design for easy storage.",
+    "benefits": "Great for setting up agility and speed drills. Highly visible for various surfaces. Easy to store and transport.",
+    "image": "training_cones.jpg",
+    "category": "Outdoor Fitness Gear"
+  },
+  {
+    "name": "Skipping Rope",
+    "price": 15.0,
+    "stockQuantity": 80,
+    "description": "Durable skipping rope for outdoor cardio workouts. Adjustable length to suit all heights. Lightweight handles for a comfortable grip.",
+    "benefits": "Perfect for cardio and endurance training. Adjustable to fit different users. Lightweight and portable for easy use.",
+    "image": "skipping_rope.jpg",
+    "category": "Outdoor Fitness Gear"
+  },
+  {
+    "name": "Boxing Gloves",
+    "price": 60.0,
+    "stockQuantity": 40,
+    "description": "High-quality boxing gloves for training and sparring. Made from premium synthetic leather. Multi-layer foam padding for maximum hand protection.",
+    "benefits": "Provides excellent hand protection during training. Durable and long-lasting material. Comfortable fit for extended use.",
+    "image": "boxing_gloves.jpg",
+    "category": "Boxing and Martial Arts Equipment"
+  },
+  {
+    "name": "Punching Bag",
+    "price": 150.0,
+    "stockQuantity": 20,
+    "description": "Heavy-duty punching bag for boxing and martial arts training. Durable vinyl exterior with reinforced stitching. Includes hanging chains for easy installation.",
+    "benefits": "Great for improving striking power and technique. Durable construction for long-term use. Easy to install and set up.",
+    "image": "punching_bag.jpg",
+    "category": "Boxing and Martial Arts Equipment"
+  },
+  {
+    "name": "Hand Wraps",
+    "price": 10.0,
+    "stockQuantity": 100,
+    "description": "Comfortable hand wraps for wrist and knuckle support. Stretchable cotton material for a secure fit. Ideal for boxing, kickboxing, and MMA training.",
+    "benefits": "Provides wrist and knuckle support during training. Stretchable and comfortable for a secure fit. Essential for boxing and martial arts workouts.",
+    "image": "hand_wraps.jpg",
+    "category": "Boxing and Martial Arts Equipment"
+  },
+  {
+    "name": "Muay Thai Pads",
+    "price": 80.0,
+    "stockQuantity": 30,
+    "description": "Durable Muay Thai pads for striking training. High-density foam for impact absorption. Adjustable straps for a secure fit.",
+    "benefits": "Great for striking and kickboxing training. High-density foam absorbs impacts effectively. Adjustable for a secure and comfortable fit.",
+    "image": "muay_thai_pads.jpg",
+    "category": "Boxing and Martial Arts Equipment"
+  },
+  {
+    "name": "Speed Bag",
+    "price": 40.0,
+    "stockQuantity": 35,
+    "description": "Speed bag for improving hand-eye coordination and speed. Durable leather construction. Includes swivel for easy mounting.",
+    "benefits": "Enhances hand-eye coordination and speed. Durable construction for long-lasting use. Easy to mount and use.",
+    "image": "speed_bag.jpg",
+    "category": "Boxing and Martial Arts Equipment"
+  }
+]

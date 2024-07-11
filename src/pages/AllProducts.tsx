@@ -99,9 +99,9 @@ const AllProducts = () => {
     });
   }, [selectedSort, searchTerm, checkedState, minValue, maxValue]);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="mt-8">

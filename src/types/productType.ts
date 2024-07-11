@@ -5,6 +5,7 @@ export type TProduct = {
   stockQuantity: number;
   description: string;
   image: string;
+  benefits: string;
   category: string;
   isDeleted: boolean;
 };
