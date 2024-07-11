@@ -4,31 +4,20 @@ const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: (queryObj) => {
-        if (queryObj?.sort) {
-          const sortValue = queryObj.sort;
+        const { searchTerm, sort } = queryObj || {};
+        let url = "/products";
 
-          if (sortValue === "descending") {
-            return {
-              url: "/products?sort=-price",
-              method: "GET",
-            };
-          } else {
-            return {
-              url: "/products?sort=price",
-              method: "GET",
-            };
-          }
+        if (searchTerm) {
+          url += `?searchTerm=${searchTerm}`;
         }
 
-        // if (queryObj?.category) {
-        //   return {
-        //     url: `/products?category=${queryObj?.category}`,
-        //     method: "GET",
-        //   };
-        // }
+        if (sort) {
+          const sortValue = sort === "descending" ? "-price" : "price";
+          url += searchTerm ? `&sort=${sortValue}` : `?sort=${sortValue}`;
+        }
 
         return {
-          url: "/products",
+          url,
           method: "GET",
         };
       },
