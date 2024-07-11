@@ -17,7 +17,7 @@ const AllProducts = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isResetButtonEnabled, setIsResetButtonEnabled] = useState(false);
   const [minValue, setMinValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(100);
+  const [maxValue, setMaxValue] = useState(1200);
 
   const [checkedState, setCheckedState] = useState(
     categoryJson.reduce((acc, category) => {
@@ -51,7 +51,8 @@ const AllProducts = () => {
   const handleSearchProduct = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // setSearchTerm(event.target.value);
-    console.log("Search term:", searchTerm);
+    setIsResetButtonEnabled(true);
+    event.target.reset();
   };
 
   const handleCheckboxChange = (categoryName: string) => {
@@ -74,9 +75,13 @@ const AllProducts = () => {
     }, {} as Record<string, boolean>);
     setCheckedState(resetState);
     setIsResetButtonEnabled(false);
+    setMinValue(0);
+    setMaxValue(1200);
+    setSearchTerm("");
   };
 
   const handleSliderChange = (values: number[]) => {
+    setIsResetButtonEnabled(true);
     setMinValue(values[0]);
     setMaxValue(values[1]);
   };
@@ -224,7 +229,7 @@ const AllProducts = () => {
                     <Slider
                       className="slider"
                       min={0}
-                      max={100}
+                      max={1200}
                       step={1} // adjust step value for finer control
                       value={[minValue, maxValue]}
                       onChange={handleSliderChange}

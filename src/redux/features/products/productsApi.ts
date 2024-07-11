@@ -6,7 +6,7 @@ const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: (queryObj) => {
-        const { searchTerm, sort, categories } = queryObj || {};
+        const { searchTerm, sort, categories, priceRange } = queryObj || {};
 
         // map() iterates through the filtered key-value pairs and directly extracts the key (category) using array destructuring with [key].
 
@@ -20,6 +20,16 @@ const productApi = baseApi.injectEndpoints({
 
         if (searchTerm) {
           params.append("searchTerm", searchTerm);
+        }
+
+        if (priceRange) {
+          const { minPrice, maxPrice } = priceRange;
+          if (minPrice !== undefined) {
+            params.append("minPrice", minPrice);
+          }
+          if (maxPrice !== undefined) {
+            params.append("maxPrice", maxPrice);
+          }
         }
 
         if (sort) {
