@@ -154,7 +154,9 @@ const CategoryWiseProducts = () => {
                   <div className="mt-7 space-y-7">
                     <div className="flex gap-3 items-center">
                       <IoIosPricetags className="text-3xl" />
-                      <h1 className="text-3xl font-semibold">Price</h1>
+                      <h1 className="md:text-2xl xl:text-3xl font-semibold">
+                        Price
+                      </h1>
                     </div>
 
                     <Slider
@@ -166,7 +168,7 @@ const CategoryWiseProducts = () => {
                       onChange={handleSliderChange}
                     />
 
-                    <p className="text-xl font-medium">
+                    <p className="xl:text-xl font-medium">
                       Price Range: ${minValue} - ${maxValue}
                     </p>
                   </div>
@@ -186,8 +188,11 @@ const CategoryWiseProducts = () => {
                   </div>
 
                   {/* Category image starts */}
-                  <div className="my-6">
-                    <img src="https://demo.ishithemes.com/opencart/OPC162/OPC162/image/cache/catalog/other/Left-banner-367x416.png" />
+                  <div className="my-6 justify-center items-center">
+                    <img
+                      src="https://demo.ishithemes.com/opencart/OPC162/OPC162/image/cache/catalog/other/Left-banner-367x416.png"
+                      className="md:max-w-lg md:mx-auto object-cover"
+                    />
                   </div>
                   {/* Category image ends */}
                 </div>
@@ -206,7 +211,7 @@ const CategoryWiseProducts = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10">
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 my-10">
                     {allProducts?.map((singleProduct: TProduct) => (
                       <HomeProductCard
                         key={singleProduct?._id}

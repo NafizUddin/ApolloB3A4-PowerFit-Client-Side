@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { CgMenuGridO } from "react-icons/cg";
 
@@ -107,11 +107,13 @@ const Navbar = () => {
               </label>
             </div>
             <div className="mx-2 px-2 flex-1 ml-8 md:ml-40 lg:ml-0">
-              <img
-                src={logo}
-                alt=""
-                className="w-[230px] md:w-[270px] lg:w-[180px] xl:w-[270px]"
-              />
+              <Link to="/">
+                <img
+                  src={logo}
+                  alt=""
+                  className="w-[230px] md:w-[270px] lg:w-[180px] xl:w-[270px]"
+                />
+              </Link>
             </div>
             <div className="hidden flex-none lg:block px-3">
               <ul className="flex gap-6 text-[#033955] font-semibold text-lg">
