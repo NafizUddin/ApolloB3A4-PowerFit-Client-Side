@@ -1,6 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { CgMenuGridO } from "react-icons/cg";
+import { GrCart } from "react-icons/gr";
+import CartDrawerSide from "../../components/CartDrawerSide/CartDrawerSide";
 
 const Navbar = () => {
   const links = (
@@ -61,20 +63,6 @@ const Navbar = () => {
           Products Management
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/cart"
-          className={({ isActive, isPending }) =>
-            isActive
-              ? "bg-[#033955] px-3 py-2 text-white rounded-md"
-              : isPending
-              ? "pending"
-              : ""
-          }
-        >
-          Cart
-        </NavLink>
-      </li>
     </>
   );
 
@@ -115,11 +103,34 @@ const Navbar = () => {
                 />
               </Link>
             </div>
-            <div className="hidden flex-none lg:block px-3">
-              <ul className="flex gap-6 text-[#033955] font-semibold text-lg">
-                {/* Navbar menu content here */}
-                {links}
-              </ul>
+            <div className="flex gap-5 items-center">
+              <div className="hidden flex-none px-3 lg:flex gap-6">
+                <ul className="flex gap-6 text-[#033955] font-semibold">
+                  {/* Navbar menu content here */}
+                  {links}
+                </ul>
+              </div>
+              <div className="drawer-end">
+                <input
+                  id="my-drawer-4"
+                  type="checkbox"
+                  className="drawer-toggle"
+                />
+                <div className="drawer-content mr-3">
+                  {/* Page content here */}
+                  <label htmlFor="my-drawer-4" className="drawer-button">
+                    <GrCart className="text-2xl text-[#033955]" />
+                  </label>
+                </div>
+                <div className="drawer-side z-20">
+                  <label
+                    htmlFor="my-drawer-4"
+                    aria-label="close sidebar"
+                    className="drawer-overlay"
+                  ></label>
+                  <CartDrawerSide />
+                </div>
+              </div>
             </div>
           </div>
           {/* Page content here */}
