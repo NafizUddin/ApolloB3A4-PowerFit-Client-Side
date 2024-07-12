@@ -70,7 +70,21 @@ const productApi = baseApi.injectEndpoints({
       },
       providesTags: ["product"],
     }),
+    addProduct: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/products",
+          method: "POST",
+          body: data,
+        };
+      },
+      invalidatesTags: ["product"],
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useGetSingleProductQuery } = productApi;
+export const {
+  useGetProductsQuery,
+  useGetSingleProductQuery,
+  useAddProductMutation,
+} = productApi;

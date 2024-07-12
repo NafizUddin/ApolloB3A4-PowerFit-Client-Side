@@ -6,6 +6,7 @@ import AboutUs from "../pages/AboutUs";
 import AllProducts from "../pages/AllProducts";
 import CategoryWiseProducts from "../pages/CategoryWiseProducts";
 import ProductDetails from "../pages/ProductDetails";
+import ProductManagement from "../pages/ProductManagement";
 
 const MainRoute = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const MainRoute = createBrowserRouter([
       {
         path: "productDetails/:id",
         element: <ProductDetails />,
+      },
+      {
+        path: "productManagement",
+        element: <ProductManagement />,
       },
     ],
   },
