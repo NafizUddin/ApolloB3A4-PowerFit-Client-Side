@@ -44,8 +44,13 @@ const productApi = baseApi.injectEndpoints({
         }
 
         if (sort) {
-          const sortValue = sort === "descending" ? "-price" : "price";
-          params.append("sort", sortValue);
+          if (sort === "descending") {
+            params.append("sort", "-price");
+          } else if (sort === "ascending") {
+            params.append("sort", "price");
+          } else {
+            params.append("sort", "-createdAt");
+          }
         }
 
         if (params.toString()) {
@@ -80,6 +85,21 @@ const productApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["product"],
     }),
+    updateProduct: builder.mutation({
+      query: (options) => ({
+        url: `/products/${options.id}`,
+        method: "PUT",
+        body: options.data,
+      }),
+      invalidatesTags: ["product"],
+    }),
+    deleteProduct: builder.mutation({
+      query: (id) => ({
+        url: `/products/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["product"],
+    }),
   }),
 });
 
@@ -87,4 +107,6 @@ export const {
   useGetProductsQuery,
   useGetSingleProductQuery,
   useAddProductMutation,
+  useUpdateProductMutation,
+  useDeleteProductMutation,
 } = productApi;

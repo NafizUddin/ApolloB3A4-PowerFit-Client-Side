@@ -1,13 +1,22 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import SectionTitle from "../components/sectionTitle/SectionTitle";
 import { FaPlus } from "react-icons/fa";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import axios from "axios";
-import { useAddProductMutation } from "../redux/features/products/productsApi";
+import {
+  useAddProductMutation,
+  useDeleteProductMutation,
+  useGetProductsQuery,
+  useUpdateProductMutation,
+} from "../redux/features/products/productsApi";
 import { ImSpinner6 } from "react-icons/im";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { TProduct } from "@/types/productType";
+import { Link, useNavigate } from "react-router-dom";
+import { CiCircleMore } from "react-icons/ci";
+import fitness from "../assets/fitness.png";
+import { TProduct } from "../types/productType";
+import Loading from "../components/Loading/Loading";
+import Swal from "sweetalert2";
 
 const image_hosting_key = "d00e0bab8af22de69cd828138698409d";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -25,10 +34,28 @@ interface FormData {
 const ProductManagement = () => {
   const { handleSubmit, formState, control, register, reset } = useForm();
   const { errors } = formState;
+  const queryObj = {
+    sort: "",
+    searchTerm: "",
+  };
 
-  const [addProduct, { isLoading, data, isSuccess }] = useAddProductMutation();
+  const [addProduct, { isLoading, data: addedProduct }] =
+    useAddProductMutation();
+
+  const [updateProduct, { data: updatedProduct }] = useUpdateProductMutation();
+
+  const [deleteProduct] = useDeleteProductMutation();
+
+  const { data: productsResponse, isLoading: isProductLoading } =
+    useGetProductsQuery(queryObj);
+
+  const products = productsResponse?.data;
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleAddProduct: SubmitHandler<FormData> = async (formData) => {
     const imageFile = { image: formData?.image[0] };
@@ -68,8 +95,39 @@ const ProductManagement = () => {
       console.error("Failed to add product:", error);
     }
   };
+
+  const handleDeleteRequest = async (id: string) => {
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#2e8b57",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      });
+
+      if (result.isConfirmed) {
+        const res = await deleteProduct(id).unwrap();
+        if (res.success) {
+          toast.success(res.message, {
+            duration: 4000,
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Error deleting the donation:", error);
+      toast.error("There was an error deleting the file.");
+    }
+  };
+
+  if (isProductLoading) {
+    return <Loading />;
+  }
+
   return (
-    <div className="mt-8">
+    <div className="mb-28 mx-7 md:mx-8 xl:mx-0 mt-8">
       <SectionTitle
         sub="Seamless Management"
         heading="Manage Your Gear"
@@ -78,8 +136,9 @@ const ProductManagement = () => {
 
       <div className="flex items-center justify-end mb-12">
         <button
+          className="modal-toggle"
           onClick={() => document.getElementById("my_modal_1").showModal()}
-          className="flex items-center gap-2 px-4 py-3 btn-custom rounded-full text-white bg-[#e08534]"
+          className="flex items-center gap-2 px-4 py-3 btn-custom rounded-full text-white bg-[#e08534] "
         >
           <FaPlus className="text-xl mr-1" />
           <span className="">Add New Product</span>
@@ -344,6 +403,92 @@ const ProductManagement = () => {
           </div>
         </div>
       </dialog>
+
+      <div>
+        {products?.length > 0 ? (
+          <div>
+            <div className="overflow-x-auto pb-16">
+              <table className="table">
+                {/* head */}
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th className="xl:text-lg font-semibold">Product Image</th>
+                    <th className="xl:text-lg font-semibold">Product Name</th>
+                    <th className="xl:text-lg font-semibold">Category</th>
+                    <th className="xl:text-lg font-semibold">Price</th>
+                    <th className="xl:text-lg font-semibold">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* row 1 */}
+                  {products?.map((singleProduct: TProduct, index: number) => (
+                    <tr key={index}>
+                      <th>{index + 1}</th>
+                      <td>
+                        <img
+                          src={singleProduct?.image}
+                          className="w-20 h-20 object-contain"
+                        />
+                      </td>
+                      <td className="xl:text-lg font-semibold">
+                        {singleProduct?.name}
+                      </td>
+                      <td className="xl:text-lg font-semibold">
+                        {singleProduct?.category}
+                      </td>
+                      <td className="xl:text-lg font-semibold">
+                        ${singleProduct?.price}.00
+                      </td>
+
+                      <td className="xl:text-lg font-semibold">
+                        {/* <button onClick={handleDeleteReq}>HEllo</button> */}
+                        <div className="dropdown dropdown-left">
+                          <label tabIndex={0} className="m-1">
+                            <CiCircleMore className="text-3xl" />
+                          </label>
+                          <ul
+                            tabIndex={0}
+                            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-32"
+                          >
+                            <Link
+                              to={`/dashboard/updateDonation/${singleProduct?._id}`}
+                            >
+                              <li>
+                                <span className="">Edit</span>
+                              </li>
+                            </Link>
+
+                            <li>
+                              <span
+                                onClick={() =>
+                                  handleDeleteRequest(singleProduct?._id)
+                                }
+                                className=""
+                              >
+                                Delete
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : (
+          <div className="flex justify-center items-center flex-col lg:py-14">
+            <div className="">
+              <img src={fitness} className="w-52" />
+            </div>
+            <p className="max-w-xl text-center text-4xl font-bold mt-6 mb-24">
+              Sorry, Products Unavailable.
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
