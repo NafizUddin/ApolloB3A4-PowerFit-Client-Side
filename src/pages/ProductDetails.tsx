@@ -6,6 +6,7 @@ import Rating from "react-rating";
 import { FaCircleXmark } from "react-icons/fa6";
 import QuantitySelector from "../components/QuantitySelector/QuantitySelector";
 import { useEffect, useState } from "react";
+import Loading from "../components/Loading/Loading";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -22,6 +23,10 @@ const ProductDetails = () => {
       setInStock(singleProduct.stockQuantity);
     }
   }, [singleProduct]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const increment = () => {
     if (inStock > 1) {
@@ -40,6 +45,10 @@ const ProductDetails = () => {
   const handleAddToCart = () => {
     console.log("hello");
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>
@@ -86,39 +95,40 @@ const ProductDetails = () => {
 
             <div className="flex flex-col items-center lg:items-start mt-2">
               {inStock ? (
-                <div className="flex gap-4 items-center lg:items-start xl:items-center">
-                  <div className="text-2xl text-green-600 lg:mt-1 xl:mt-0">
+                <div className="flex gap-2 xl:gap-4 items-center lg:items-start xl:items-center">
+                  <div className="text-xl xl:text-2xl text-green-600 mt-1 xl:mt-0">
                     <AiFillCheckCircle></AiFillCheckCircle>
                   </div>
-                  <p className="text-xl text-green-600">In Stock</p>
+                  <p className="text-lg xl:text-xl text-green-600">In Stock</p>
                 </div>
               ) : (
                 <div className="flex gap-4 items-center lg:items-start xl:items-center">
-                  <div className="text-2xl text-red-600 lg:mt-1 xl:mt-0">
+                  <div className="text-xl xl:text-2xl text-red-600 lg:mt-1 xl:mt-0">
                     <FaCircleXmark />
                   </div>
-                  <p className="text-xl text-red-600">Out of Stock</p>
+                  <p className="text-lg xl:text-xl text-red-600">
+                    Out of Stock
+                  </p>
                 </div>
               )}
-              <div className="flex gap-4 items-center lg:items-start xl:items-center mt-3">
-                <div className="text-2xl text-green-600 lg:mt-1 xl:mt-0">
+              <div className="flex gap-2 xl:gap-4 items-center lg:items-start xl:items-center mt-3">
+                <div className="text-xl xl:text-2xl text-green-600 lg:mt-1 xl:mt-0">
                   <AiFillCheckCircle></AiFillCheckCircle>
                 </div>
-                <p className="text-xl text-green-600">
+                <p className="text-lg xl:text-xl text-green-600">
                   Free Delivery Available
                 </p>
               </div>
             </div>
-            <div className="mt-5">
+            <div className="mt-5 md:w-[280px] md:mx-auto lg:w-full lg:mx-auto">
               <QuantitySelector
                 quantity={quantity}
-                setQuantity={setQuantity}
                 increment={increment}
                 decrement={decrement}
                 inStock={inStock}
               />
             </div>
-            <div className="flex items-center justify-center lg:justify-start mt-5">
+            <div className="flex items-center justify-center lg:justify-start mt-5 md:w-[280px] md:mx-auto lg:w-full lg:mx-auto">
               <button
                 onClick={handleAddToCart}
                 className={`flex items-center gap-2 px-6 py-3  rounded-lg w-full justify-center ${

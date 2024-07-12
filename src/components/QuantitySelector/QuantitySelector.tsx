@@ -1,6 +1,5 @@
 interface QuantitySelectorProps {
   quantity: number;
-  setQuantity: React.Dispatch<React.SetStateAction<number>>;
   increment: () => void;
   decrement: () => void;
   inStock: number;
@@ -8,7 +7,6 @@ interface QuantitySelectorProps {
 
 const QuantitySelector = ({
   quantity,
-  setQuantity,
   increment,
   decrement,
   inStock,
@@ -21,7 +19,9 @@ const QuantitySelector = ({
       >
         <div className="w-full flex justify-between items-center gap-x-5">
           <div className="grow">
-            <span className="block text-xs text-gray-500">Select quantity</span>
+            <h1 className="text-left block text-xs xl:text-base text-gray-500">
+              Select quantity
+            </h1>
             <input
               className="w-full p-0 bg-transparent border-0 text-gray-800 focus:ring-0"
               type="text"
