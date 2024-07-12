@@ -5,6 +5,7 @@ import HomePage from "../pages/HomePage";
 import AboutUs from "../pages/AboutUs";
 import AllProducts from "../pages/AllProducts";
 import CategoryWiseProducts from "../pages/CategoryWiseProducts";
+import ProductDetails from "../pages/ProductDetails";
 
 const MainRoute = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const MainRoute = createBrowserRouter([
       {
         path: "categoryProducts/:category",
         element: <CategoryWiseProducts />,
+      },
+      {
+        path: "productDetails/:id",
+        element: <ProductDetails />,
       },
     ],
   },
