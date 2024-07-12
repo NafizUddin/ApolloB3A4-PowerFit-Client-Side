@@ -1,7 +1,7 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import SectionTitle from "../components/sectionTitle/SectionTitle";
 import { FaPlus } from "react-icons/fa";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import axios from "axios";
 import {
   useAddProductMutation,
@@ -17,6 +17,7 @@ import fitness from "../assets/fitness.png";
 import { TProduct } from "../types/productType";
 import Loading from "../components/Loading/Loading";
 import Swal from "sweetalert2";
+import UpdateProductModal from "../components/UpdateProductModal/UpdateProductModal";
 
 const image_hosting_key = "d00e0bab8af22de69cd828138698409d";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -34,6 +35,8 @@ interface FormData {
 const ProductManagement = () => {
   const { handleSubmit, formState, control, register, reset } = useForm();
   const { errors } = formState;
+  const [product, setProduct] = useState(null);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const queryObj = {
     sort: "",
     searchTerm: "",
@@ -127,8 +130,17 @@ const ProductManagement = () => {
     }
   };
 
-  const handleOpenModal = () => {
+  const handleUpdateProduct = (formData) => {
+    console.log(formData);
+  };
+
+  const handleCreateProductOpenModal = () => {
     document.getElementById("my_modal_1").showModal();
+  };
+
+  const handleUpdateProductOpenModal = (singleProduct) => {
+    setProduct(singleProduct);
+    setIsUpdateModalOpen(true);
   };
 
   if (isProductLoading) {
@@ -145,7 +157,7 @@ const ProductManagement = () => {
 
       <div className="flex items-center justify-end mb-12">
         <button
-          onClick={handleOpenModal}
+          onClick={handleCreateProductOpenModal}
           className="flex items-center gap-2 px-4 py-3 btn-custom rounded-full text-white bg-[#e08534] "
         >
           <FaPlus className="text-xl mr-1" />
@@ -153,6 +165,7 @@ const ProductManagement = () => {
         </button>
       </div>
 
+      {/* Create product modal  */}
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box max-w-2xl h-[550px]">
           <form method="dialog">
@@ -220,7 +233,7 @@ const ProductManagement = () => {
                         message: "Product Price is required",
                       },
                     })}
-                    className="lg:w-96 bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
+                    className="w-[420px] lg:w-[400px] bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
                     placeholder="Enter Product Price"
                   />
                 </div>
@@ -249,7 +262,7 @@ const ProductManagement = () => {
                         message: "Product Stock Quantity is required",
                       },
                     })}
-                    className="lg:w-96 bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
+                    className="w-[420px] lg:w-[400px] bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
                     placeholder="Enter Stock Quantity"
                   />
                 </div>
@@ -277,7 +290,7 @@ const ProductManagement = () => {
                     render={({ field }) => (
                       <select
                         {...field}
-                        className="lg:w-96 bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
+                        className="w-[420px] lg:w-[400px] bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
                       >
                         <option value="">Select Product Category</option>
                         <option value="Strength Training">
@@ -327,7 +340,7 @@ const ProductManagement = () => {
                         message: "Product Description is required",
                       },
                     })}
-                    className="w-full md:w-96 bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
+                    className="w-full md:w-[420px] bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
                     placeholder="Enter Product Description"
                   />
                 </div>
@@ -356,7 +369,7 @@ const ProductManagement = () => {
                         message: "Product Benefits is required",
                       },
                     })}
-                    className="w-full md:w-96 bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
+                    className="w-full md:w-[420px] lg:w-[400px] bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
                     placeholder="Enter Product Benefits"
                   />
                 </div>
@@ -448,7 +461,6 @@ const ProductManagement = () => {
                       <td className="xl:text-lg font-semibold">
                         ${singleProduct?.price}.00
                       </td>
-
                       <td className="xl:text-lg font-semibold">
                         <div className="dropdown dropdown-left">
                           <label tabIndex={0} className="m-1 cursor-pointer">
@@ -459,7 +471,14 @@ const ProductManagement = () => {
                             className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-32"
                           >
                             <li>
-                              <span className="">Edit</span>
+                              <span
+                                onClick={() =>
+                                  handleUpdateProductOpenModal(singleProduct)
+                                }
+                                className=""
+                              >
+                                Edit
+                              </span>
                             </li>
 
                             <li>
@@ -494,8 +513,13 @@ const ProductManagement = () => {
           </div>
         )}
       </div>
-
-      <div></div>
+      {isUpdateModalOpen && (
+        <UpdateProductModal
+          handleUpdateProduct={handleUpdateProduct}
+          product={product}
+          onClose={() => setIsUpdateModalOpen(false)} // Pass onClose handler to close the modal
+        />
+      )}
     </div>
   );
 };
