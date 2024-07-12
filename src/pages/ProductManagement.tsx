@@ -57,7 +57,8 @@ const ProductManagement = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleAddProduct: SubmitHandler<FormData> = async (formData) => {
+  const handleAddProduct = async (formData) => {
+    document.getElementById("my_modal_1").open = false;
     const imageFile = { image: formData?.image[0] };
 
     try {
@@ -82,14 +83,18 @@ const ProductManagement = () => {
           category: formData.category,
         };
 
-        const result = await addProduct(productData).unwrap();
-
-        if (result.success) {
-          toast.success(result.message, {
-            duration: 4000,
-          });
-          navigate("/productManagement");
-        }
+        await toast.promise(addProduct(productData).unwrap(), {
+          loading: "Creating product...",
+          success: (res) => {
+            if (res.success) {
+              navigate("/productManagement");
+              return res.message;
+            } else {
+              throw new Error(res.message);
+            }
+          },
+          error: "Failed to create product",
+        });
       }
     } catch (error) {
       console.error("Failed to add product:", error);
@@ -122,6 +127,10 @@ const ProductManagement = () => {
     }
   };
 
+  const handleOpenModal = () => {
+    document.getElementById("my_modal_1").showModal();
+  };
+
   if (isProductLoading) {
     return <Loading />;
   }
@@ -136,8 +145,7 @@ const ProductManagement = () => {
 
       <div className="flex items-center justify-end mb-12">
         <button
-          className="modal-toggle"
-          onClick={() => document.getElementById("my_modal_1").showModal()}
+          onClick={handleOpenModal}
           className="flex items-center gap-2 px-4 py-3 btn-custom rounded-full text-white bg-[#e08534] "
         >
           <FaPlus className="text-xl mr-1" />
@@ -442,27 +450,24 @@ const ProductManagement = () => {
                       </td>
 
                       <td className="xl:text-lg font-semibold">
-                        {/* <button onClick={handleDeleteReq}>HEllo</button> */}
                         <div className="dropdown dropdown-left">
-                          <label tabIndex={0} className="m-1">
+                          <label tabIndex={0} className="m-1 cursor-pointer">
                             <CiCircleMore className="text-3xl" />
                           </label>
                           <ul
                             tabIndex={0}
                             className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-32"
                           >
-                            <Link
-                              to={`/dashboard/updateDonation/${singleProduct?._id}`}
-                            >
-                              <li>
-                                <span className="">Edit</span>
-                              </li>
-                            </Link>
+                            <li>
+                              <span className="">Edit</span>
+                            </li>
 
                             <li>
                               <span
                                 onClick={() =>
-                                  handleDeleteRequest(singleProduct?._id)
+                                  handleDeleteRequest(
+                                    singleProduct?._id as string
+                                  )
                                 }
                                 className=""
                               >
@@ -489,6 +494,8 @@ const ProductManagement = () => {
           </div>
         )}
       </div>
+
+      <div></div>
     </div>
   );
 };
