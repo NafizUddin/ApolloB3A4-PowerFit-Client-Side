@@ -15,18 +15,9 @@ const UpdateProductModal = ({
 }: UpdateProductModalProps) => {
   const { handleSubmit, formState, control, register, reset } = useForm();
   const { errors } = formState;
-  const {
-    _id,
-    name,
-    price,
-    stockQuantity,
-    category,
-    description,
-    benefits,
-    image,
-  } = product;
+  const { _id, name, price, stockQuantity, category, description, benefits } =
+    product;
 
-  console.log(product);
   return (
     <dialog id="my_modal_2" className="modal" open>
       <div className="modal-box max-w-2xl h-[550px]">
@@ -49,6 +40,7 @@ const UpdateProductModal = ({
             noValidate
             method="dialog"
           >
+            <input type="hidden" value={_id} {...register("id")} />
             <div>
               <div className="flex">
                 <label
@@ -264,6 +256,7 @@ const UpdateProductModal = ({
                 <input
                   id="example1"
                   type="file"
+                  required
                   accept="image/*"
                   {...register("image", {
                     required: {
@@ -275,7 +268,7 @@ const UpdateProductModal = ({
                 />
               </div>
               <p className="text-sm text-red-600 font-medium ml-28 md:ml-44 mt-2">
-                {errors?.name?.message as ReactNode}
+                {errors?.image?.message as ReactNode}
               </p>
             </div>
 
