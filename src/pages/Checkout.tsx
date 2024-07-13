@@ -1,9 +1,10 @@
 import { removeProduct } from "../redux/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaCircleXmark } from "react-icons/fa6";
+import { RiErrorWarningFill } from "react-icons/ri";
 
 const Checkout = () => {
   const { handleSubmit, formState, control, register, reset } = useForm();
@@ -21,17 +22,30 @@ const Checkout = () => {
     toast.success("Product removed successfully!");
   };
 
+  const shipping = 5;
+  const taxes = subtotal * 0.05;
+  const total = subtotal + shipping + taxes;
+
+  const handlePlaceOrder = async (formData) => {
+    if (!togglePayment) {
+      return toast.error("Please select delivery method");
+    }
+  };
+
   return (
     <div>
       <main className="max-w-7xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mx-auto lg:max-w-none">
+        <form
+          onSubmit={handleSubmit(handlePlaceOrder)}
+          className="max-w-2xl mx-auto lg:max-w-none"
+        >
           <div className="mb-8">
             <h1 className="text-3xl lg:text-4xl text-[#033955] border-l-[10px] border-[#e08534] pl-2 font-bold">
               Checkout
             </h1>
           </div>
 
-          <form className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
             <div>
               <div>
                 <h2 className="text-lg font-medium text-gray-900">
@@ -48,11 +62,17 @@ const Checkout = () => {
                   <div className="mt-1">
                     <input
                       type="email"
-                      id="email-address"
-                      name="email-address"
-                      autoComplete="email"
+                      {...register("email", {
+                        required: {
+                          value: true,
+                          message: "User Email is required",
+                        },
+                      })}
                       className="block w-full bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
                     />
+                    <p className="text-sm text-red-600 font-medium  mt-2">
+                      {errors?.email?.message as ReactNode}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -73,11 +93,17 @@ const Checkout = () => {
                     <div className="mt-1">
                       <input
                         type="text"
-                        id="first-name"
-                        name="first-name"
-                        autoComplete="given-name"
+                        {...register("name", {
+                          required: {
+                            value: true,
+                            message: "Name is required",
+                          },
+                        })}
                         className="block w-full bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
                       />
+                      <p className="text-sm text-red-600 font-medium  mt-2">
+                        {errors?.name?.message as ReactNode}
+                      </p>
                     </div>
                   </div>
 
@@ -91,11 +117,17 @@ const Checkout = () => {
                     <div className="mt-1">
                       <input
                         type="text"
-                        id="first-name"
-                        name="first-name"
-                        autoComplete="given-name"
+                        {...register("address", {
+                          required: {
+                            value: true,
+                            message: "Address is required",
+                          },
+                        })}
                         className="block w-full bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
                       />
+                      <p className="text-sm text-red-600 font-medium  mt-2">
+                        {errors?.address?.message as ReactNode}
+                      </p>
                     </div>
                   </div>
 
@@ -109,9 +141,12 @@ const Checkout = () => {
                     <div className="mt-1">
                       <input
                         type="text"
-                        id="first-name"
-                        name="first-name"
-                        autoComplete="given-name"
+                        {...register("phone", {
+                          required: {
+                            value: true,
+                            message: "Phone Number is required",
+                          },
+                        })}
                         className="block w-full bg-transparent p-2 border border-gray-300 outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-1 focus:border-orange-500 rounded-lg focus:ring-[#e08534]"
                       />
                     </div>
@@ -121,9 +156,19 @@ const Checkout = () => {
 
               <div className="mt-10 border-t border-gray-200 pt-10">
                 <fieldset>
-                  <legend className="text-lg font-medium text-gray-900">
-                    Delivery method
-                  </legend>
+                  <div className="flex gap-3">
+                    <legend className="text-lg font-medium text-gray-900">
+                      Delivery method
+                    </legend>
+                    {!togglePayment && (
+                      <div className="flex gap-2 items-center">
+                        <RiErrorWarningFill className="text-[#e08534]" />
+                        <h1 className="text-sm text-[#e08534]">
+                          Please select delivery method
+                        </h1>
+                      </div>
+                    )}
+                  </div>
 
                   <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
                     <label
@@ -166,9 +211,9 @@ const Checkout = () => {
                         aria-hidden="true"
                       >
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
+                          clipRule="evenodd"
                         />
                       </svg>
 
@@ -178,15 +223,7 @@ const Checkout = () => {
                       ></div>
                     </label>
 
-                    <label className="relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none">
-                      <input
-                        type="radio"
-                        name="delivery-method"
-                        value="Express"
-                        className="sr-only"
-                        aria-labelledby="delivery-method-1-label"
-                        aria-describedby="delivery-method-1-description-0 delivery-method-1-description-1"
-                      />
+                    <label className="relative bg-white border rounded-lg shadow-sm p-4 flex focus:outline-none cursor-not-allowed">
                       <div className="flex-1 flex">
                         <div className="flex flex-col">
                           <span
@@ -292,19 +329,19 @@ const Checkout = () => {
                     <div className="flex items-center justify-between">
                       <dt className="text-sm">Shipping</dt>
                       <dd className="text-sm font-medium text-gray-900">
-                        $5.00
+                        ${shipping}.00
                       </dd>
                     </div>
                     <div className="flex items-center justify-between">
                       <dt className="text-sm">Taxes</dt>
                       <dd className="text-sm font-medium text-gray-900">
-                        $5.52
+                        ${taxes.toFixed(2)}
                       </dd>
                     </div>
                     <div className="flex items-center justify-between border-t border-gray-200 pt-6">
                       <dt className="text-base font-medium">Total</dt>
                       <dd className="text-base font-medium text-gray-900">
-                        $75.52
+                        ${total.toFixed(2)}
                       </dd>
                     </div>
                   </div>
@@ -320,8 +357,8 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </main>
     </div>
   );
