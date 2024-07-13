@@ -1,8 +1,7 @@
 import { AiFillCheckCircle } from "react-icons/ai";
 import { useGetSingleProductQuery } from "../redux/features/products/productsApi";
 import { useParams } from "react-router-dom";
-import { BsCart3, BsFillStarFill, BsStar } from "react-icons/bs";
-import Rating from "react-rating";
+import { BsCart3 } from "react-icons/bs";
 import { FaCircleXmark } from "react-icons/fa6";
 import QuantitySelector from "../components/QuantitySelector/QuantitySelector";
 import { useEffect, useState } from "react";
@@ -23,8 +22,6 @@ const ProductDetails = () => {
 
   const [quantity, setQuantity] = useState(0);
   const [inStock, setInStock] = useState(singleProduct?.stockQuantity || 0);
-
-  const isDisabled = !(inStock && quantity);
 
   const { product } = useAppSelector((state) => state.products);
 
@@ -94,15 +91,6 @@ const ProductDetails = () => {
               {singleProduct?.name}
             </h1>
             <div className="flex items-center justify-center lg:justify-start gap-3">
-              <span className="mt-1">
-                <Rating
-                  initialRating={4}
-                  fullSymbol={<BsFillStarFill></BsFillStarFill>}
-                  emptySymbol={<BsStar></BsStar>}
-                  readonly
-                  className="text-[#e08534]"
-                />
-              </span>
               <span className="text-sm text-gray-500">
                 (435 Customer Reviews)
               </span>
@@ -159,7 +147,7 @@ const ProductDetails = () => {
             <div className="flex items-center justify-center lg:justify-start mt-5 md:w-[280px] md:mx-auto lg:w-full lg:mx-auto">
               <label htmlFor="my-drawer-4" className="drawer-button">
                 <span
-                  onClick={!isDisabled && handleAddToCart}
+                  onClick={handleAddToCart}
                   className={`flex items-center gap-2 px-6 py-3  rounded-lg w-full justify-center ${
                     inStock && quantity
                       ? "bg-[#e08534] btn-custom text-white cursor-pointer"

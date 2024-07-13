@@ -1,19 +1,9 @@
-import { TProduct } from "../../types/productType";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-type UpdateProductModalProps = {
-  product: TProduct;
-  handleUpdateProduct: (data: TProduct) => void;
-  onClose: () => void;
-};
-
-const UpdateProductModal = ({
-  product,
-  handleUpdateProduct,
-  onClose,
-}: UpdateProductModalProps) => {
-  const { handleSubmit, formState, control, register, reset } = useForm();
+const UpdateProductModal = ({ product, handleUpdateProduct, onClose }: any) => {
+  const { handleSubmit, formState, control, register } = useForm();
   const { errors } = formState;
   const { _id, name, price, stockQuantity, category, description, benefits } =
     product;

@@ -42,8 +42,8 @@ const AllProducts = () => {
   const allProducts = productsResponse?.data;
 
   const handleSelectChange = (event: FormEvent) => {
-    // Update the state with the selected value
-    setSelectedSort(event.target.value);
+    const target = event.target as HTMLSelectElement;
+    setSelectedSort(target.value);
   };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -52,9 +52,8 @@ const AllProducts = () => {
 
   const handleSearchProduct = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // setSearchTerm(event.target.value);
     setIsResetButtonEnabled(true);
-    event.target.reset();
+    event.currentTarget.reset();
   };
 
   const handleCheckboxChange = (categoryName: string) => {

@@ -1,4 +1,5 @@
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Controller, useForm } from "react-hook-form";
 import SectionTitle from "../components/sectionTitle/SectionTitle";
 import { FaPlus } from "react-icons/fa";
 import { ReactNode, useEffect, useState } from "react";
@@ -11,7 +12,6 @@ import {
 } from "../redux/features/products/productsApi";
 import { ImSpinner6 } from "react-icons/im";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { CiCircleMore } from "react-icons/ci";
 import fitness from "../assets/fitness.png";
 import { TProduct } from "../types/productType";
@@ -23,19 +23,9 @@ import useWarnIfCartNotEmpty from "../CustomHooks/useWarnIfCartNotEmpty";
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-interface FormData {
-  name: string;
-  price: string;
-  stockQuantity: string;
-  description: string;
-  image: FileList;
-  benefits: string;
-  category: string;
-}
-
 const ProductManagement = () => {
   useWarnIfCartNotEmpty();
-  const { handleSubmit, formState, control, register, reset } = useForm();
+  const { handleSubmit, formState, control, register } = useForm();
   const { errors } = formState;
   const [product, setProduct] = useState({});
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -56,13 +46,11 @@ const ProductManagement = () => {
 
   const products = productsResponse?.data;
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleAddProduct = async (formData) => {
+  const handleAddProduct = async (formData: any) => {
     setIsCreateModalOpen(false);
     const imageFile = { image: formData?.image[0] };
 
@@ -131,7 +119,7 @@ const ProductManagement = () => {
     }
   };
 
-  const handleUpdateProduct = async (formData) => {
+  const handleUpdateProduct = async (formData: any) => {
     setIsUpdateModalOpen(false);
 
     const imageFile = { image: formData?.image[0] };

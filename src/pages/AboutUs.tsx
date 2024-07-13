@@ -1,8 +1,6 @@
 import happyCustomer from "../assets/happyCustomer.png";
 import { AiFillCheckCircle } from "react-icons/ai";
-import CountUp from "react-countup";
-import { useEffect, useState } from "react";
-import ScrollTrigger from "react-scroll-trigger";
+import { useEffect } from "react";
 import { FiTarget } from "react-icons/fi";
 import SectionTitle from "../components/sectionTitle/SectionTitle";
 import teamInfo from "../jsons/teamInfo.json";
@@ -25,7 +23,6 @@ import useWarnIfCartNotEmpty from "../CustomHooks/useWarnIfCartNotEmpty";
 
 const AboutUs = () => {
   useWarnIfCartNotEmpty();
-  const [counterOn, setCounterOn] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,20 +55,10 @@ const AboutUs = () => {
           <div className="my-6 flex flex-col md:flex-row gap-10 justify-around">
             <div className="flex flex-col items-center justify-center py-5 px-7 space-y-4">
               <img src={happyCustomer} className="w-16" />
-              <ScrollTrigger
-                onEnter={() => setCounterOn(true)}
-                onExit={() => setCounterOn(false)}
-              >
-                <div className="flex gap-1 items-center">
-                  <h1 className="text-4xl font-bold">
-                    {counterOn && (
-                      <CountUp start={1} end={200} duration={2} delay={0.3} />
-                    )}
-                  </h1>
-                  <h1 className="text-4xl font-bold">K+</h1>
-                </div>
-              </ScrollTrigger>
-
+              <div className="flex gap-1 items-center">
+                <h1 className="text-4xl font-bold">200</h1>
+                <h1 className="text-4xl font-bold">K+</h1>
+              </div>
               <p className="text-lg">Happy Customers</p>
             </div>
             <div className="flex flex-col pl-6 md:pl-0 space-y-3 lg:space-y-1 xl:space-y-3">

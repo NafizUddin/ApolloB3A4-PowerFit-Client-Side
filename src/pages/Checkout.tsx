@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { TProduct } from "@/types/productType";
 import Loading from "../components/Loading/Loading";
 import {
@@ -10,7 +12,7 @@ import {
 } from "../redux/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { ReactNode, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, FieldValues } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaCircleXmark } from "react-icons/fa6";
 import { RiErrorWarningFill } from "react-icons/ri";
@@ -19,7 +21,14 @@ import useWarnIfCartNotEmpty from "../CustomHooks/useWarnIfCartNotEmpty";
 
 const Checkout = () => {
   useWarnIfCartNotEmpty();
-  const { handleSubmit, formState, register, reset } = useForm();
+  const { handleSubmit, formState, register, reset } = useForm<FieldValues>({
+    defaultValues: {
+      name: "",
+      email: "",
+      address: "",
+      phone: "",
+    },
+  });
   const { errors } = formState;
   const dispatch = useAppDispatch();
 
@@ -46,7 +55,7 @@ const Checkout = () => {
   useEffect(() => {
     if (!isLoading) {
       const stateProductIds = stateProducts.map((product) => product.id);
-      const filtered = allProducts.filter((product) =>
+      const filtered = allProducts.filter((product: any) =>
         stateProductIds.includes(product?._id)
       );
       setFilteredProducts(filtered);
@@ -62,7 +71,7 @@ const Checkout = () => {
   const taxes = subtotal * 0.05;
   const total = subtotal + shipping + taxes;
 
-  const handlePlaceOrder = async (formData) => {
+  const handlePlaceOrder = async (formData: any) => {
     if (!togglePayment) {
       return toast.error("Please select delivery method");
     }

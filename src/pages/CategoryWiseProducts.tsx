@@ -34,8 +34,8 @@ const CategoryWiseProducts = () => {
   const allProducts = productsResponse?.data;
 
   const handleSelectChange = (event: FormEvent) => {
-    // Update the state with the selected value
-    setSelectedSort(event.target.value);
+    const target = event.target as HTMLSelectElement;
+    setSelectedSort(target.value);
   };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -44,9 +44,8 @@ const CategoryWiseProducts = () => {
 
   const handleSearchProduct = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // setSearchTerm(event.target.value);
     setIsResetButtonEnabled(true);
-    event.target.reset();
+    event.currentTarget.reset();
   };
 
   const handleReset = () => {
