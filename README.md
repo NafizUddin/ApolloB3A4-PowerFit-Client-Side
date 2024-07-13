@@ -14,6 +14,9 @@ Click here to see the live server: [https://powerfit-apollob3a4.netlify.app/](ht
 
 Click here to see the Server Side Repository: [https://github.com/NafizUddin/ApolloB3A4-PowerFit-Server-Side](https://github.com/NafizUddin/ApolloB3A4-PowerFit-Server-Side)
 
+## :computer: Project Overview Video
+Click here to see the project overview video: [https://drive.google.com/file/d/1eiFHkZ867OKBgcJLAfi-6eWyJbe32MrG/view?usp=sharing](https://drive.google.com/file/d/1eiFHkZ867OKBgcJLAfi-6eWyJbe32MrG/view?usp=sharing)
+
 ## :keyboard: Technologies
 
 - TypeScript
