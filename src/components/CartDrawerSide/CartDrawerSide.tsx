@@ -1,58 +1,40 @@
-import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { FaCircleXmark } from "react-icons/fa6";
-import { removeProduct } from "../../redux/features/products/productSlice";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  removeProduct,
+  updateQuantity,
+} from "../../redux/features/products/productSlice";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const CartDrawerSide = () => {
-  const { product } = useAppSelector((state) => state.products);
+  const { product, quantities, subtotal } = useAppSelector(
+    (state) => state.products
+  );
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  //  Demo quantities example {id:quantity} {668e7bb02e5905e9700214a7: 2}
-  const [quantities, setQuantities] = useState<Record<string, number>>({});
-
-  // set up the default quantity for the quantityCounter default value
-  useEffect(() => {
-    if (product) {
-      const initialQuantities = product.reduce((acc, singleProduct) => {
-        acc[singleProduct.id] = singleProduct.quantity || 1;
-        return acc;
-      }, {} as Record<string, number>);
-      setQuantities(initialQuantities);
-    }
-  }, [product]);
-
   const increment = (id: string) => {
     const selectedProduct = product.find((item) => item.id === id);
     if (selectedProduct) {
-      console.log(selectedProduct.inStock);
       const currentQuantity = quantities[id] || 0;
       if (currentQuantity < selectedProduct.inStock) {
-        setQuantities({
-          ...quantities,
-          [id]: currentQuantity + 1,
-        });
+        dispatch(updateQuantity({ id, quantity: currentQuantity + 1 }));
       }
     }
   };
 
   const decrement = (id: string) => {
-    setQuantities({
-      ...quantities,
-      [id]: quantities[id] > 1 ? quantities[id] - 1 : 1,
-    });
+    const currentQuantity = quantities[id];
+    if (currentQuantity > 1) {
+      dispatch(updateQuantity({ id, quantity: currentQuantity - 1 }));
+    }
   };
-
-  const subtotal = product?.reduce(
-    (acc, singleProduct) =>
-      acc + singleProduct.price * (quantities[singleProduct.id] || 0),
-    0
-  );
 
   const handleRemoveFromCart = (id: string) => {
     dispatch(removeProduct(id));
+    toast.success("Product removed from cart successfully!");
   };
 
   const handleNavigate = () => {
