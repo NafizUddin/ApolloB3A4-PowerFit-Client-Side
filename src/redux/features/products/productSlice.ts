@@ -59,10 +59,15 @@ const productSlice = createSlice({
         }, 0);
       }
     },
+    clearCart: (state) => {
+      state.product = [];
+      state.quantities = {};
+      state.subtotal = 0;
+    },
   },
 });
 
-export const { addProduct, removeProduct, updateQuantity } =
+export const { addProduct, removeProduct, updateQuantity, clearCart } =
   productSlice.actions;
 
 export default productSlice.reducer;

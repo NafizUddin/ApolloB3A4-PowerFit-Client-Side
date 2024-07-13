@@ -4,13 +4,17 @@ import {
   useGetProductsQuery,
   useUpdateProductMutation,
 } from "../redux/features/products/productsApi";
-import { removeProduct } from "../redux/features/products/productSlice";
+import {
+  clearCart,
+  removeProduct,
+} from "../redux/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { ReactNode, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaCircleXmark } from "react-icons/fa6";
 import { RiErrorWarningFill } from "react-icons/ri";
+import { useAddOrderMutation } from "../redux/features/orders/ordersApi";
 
 const Checkout = () => {
   const { handleSubmit, formState, register, reset } = useForm();
@@ -20,6 +24,7 @@ const Checkout = () => {
   const [togglePayment, setTogglePayment] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState<TProduct[]>([]);
   const [updateProduct] = useUpdateProductMutation();
+  const [addOrder] = useAddOrderMutation();
 
   const queryObj = {
     sort: "",
@@ -51,7 +56,7 @@ const Checkout = () => {
     toast.success("Product removed successfully!");
   };
 
-  const shipping = 5;
+  const shipping = subtotal * 0.01;
   const taxes = subtotal * 0.05;
   const total = subtotal + shipping + taxes;
 
@@ -61,6 +66,14 @@ const Checkout = () => {
     }
 
     try {
+      const orderData = {
+        name: formData.name,
+        email: formData.email,
+        address: formData.address,
+        phone: formData.phone,
+        delivery: "Cash",
+        products: [] as string[],
+      };
       // Update quantities in the filtered products
       for (const stateProduct of stateProducts) {
         const { id } = stateProduct;
@@ -82,9 +95,15 @@ const Checkout = () => {
           };
 
           await updateProduct(options).unwrap();
+
+          // adding product ID to orderData's products array
+          orderData.products.push(id);
         }
       }
 
+      await addOrder(orderData).unwrap();
+      dispatch(clearCart());
+      reset();
       toast.success("Order placed successfully!");
     } catch (error) {
       toast.error("Failed to place order. Please try again.");
@@ -261,7 +280,7 @@ const Checkout = () => {
                             className="mt-6 text-sm font-medium text-gray-900"
                           >
                             {" "}
-                            $5.00{" "}
+                            ${shipping}{" "}
                           </span>
                         </div>
                       </div>
