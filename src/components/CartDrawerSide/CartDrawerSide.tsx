@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { FaCircleXmark } from "react-icons/fa6";
+import { removeProduct } from "../../redux/features/products/productSlice";
 
 const CartDrawerSide = () => {
   const { product } = useAppSelector((state) => state.products);
+
+  const dispatch = useAppDispatch();
 
   //  Demo quantities example {id:quantity} {668e7bb02e5905e9700214a7: 2}
   const [quantities, setQuantities] = useState<Record<string, number>>({});
@@ -31,13 +34,15 @@ const CartDrawerSide = () => {
     });
   };
 
-  console.log(quantities);
-
   const subtotal = product?.reduce(
     (acc, singleProduct) =>
       acc + singleProduct.price * (quantities[singleProduct.id] || 0),
     0
   );
+
+  const handleRemoveFromCart = (id: string) => {
+    dispatch(removeProduct(id));
+  };
 
   return (
     <div className="menu bg-base-100 text-base-content min-h-full w-80 p-4 flex flex-col">
@@ -60,9 +65,16 @@ const CartDrawerSide = () => {
                   className="w-20 h-20 object-contain"
                 />
                 <div className="ml-1">
-                  <h1 className="text-sm md:text-base font-bold">
-                    {singleProduct.name}
-                  </h1>
+                  <div className="flex items-center justify-between">
+                    <h1 className="text-sm md:text-base font-bold">
+                      {singleProduct.name}
+                    </h1>
+                    <FaCircleXmark
+                      onClick={() => handleRemoveFromCart(singleProduct.id)}
+                      className="text-[#033955] cursor-pointer text-lg"
+                    />
+                  </div>
+
                   <div className="flex justify-between items-center gap-5">
                     <div className="flex items-center border border-gray-300 rounded mt-3">
                       <button

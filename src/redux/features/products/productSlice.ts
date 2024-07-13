@@ -23,9 +23,14 @@ const productSlice = createSlice({
     addProduct: (state, action: PayloadAction<TProductRedux>) => {
       state.product.push({ ...action.payload });
     },
+    removeProduct: (state, action: PayloadAction<string>) => {
+      state.product = state.product.filter(
+        (item) => item.id !== action.payload
+      );
+    },
   },
 });
 
-export const { addProduct } = productSlice.actions;
+export const { addProduct, removeProduct } = productSlice.actions;
 
 export default productSlice.reducer;
