@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { FaCircleXmark } from "react-icons/fa6";
 import { removeProduct } from "../../redux/features/products/productSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const CartDrawerSide = () => {
   const { product } = useAppSelector((state) => state.products);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   //  Demo quantities example {id:quantity} {668e7bb02e5905e9700214a7: 2}
   const [quantities, setQuantities] = useState<Record<string, number>>({});
@@ -51,6 +53,10 @@ const CartDrawerSide = () => {
 
   const handleRemoveFromCart = (id: string) => {
     dispatch(removeProduct(id));
+  };
+
+  const handleNavigate = () => {
+    navigate("/checkout");
   };
 
   return (
@@ -125,9 +131,14 @@ const CartDrawerSide = () => {
             </p>
           </div>
 
-          <button className="w-full bg-[#e08534] btn-custom  cursor-pointer text-white py-2 mt-4 rounded-lg ">
-            Check out
-          </button>
+          <label htmlFor="my-drawer-4" className="drawer-button">
+            <span
+              onClick={handleNavigate}
+              className="w-full block text-center bg-[#e08534] btn-custom  cursor-pointer text-white py-2 mt-4 rounded-lg "
+            >
+              Check out
+            </span>
+          </label>
         </div>
       )}
     </div>

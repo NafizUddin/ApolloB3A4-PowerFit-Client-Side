@@ -29,9 +29,19 @@ const productSlice = createSlice({
         (item) => item.id !== action.payload
       );
     },
+    updateProduct: (
+      state,
+      action: PayloadAction<{ id: string; updatedData: Partial<TProductRedux> }>
+    ) => {
+      const { id, updatedData } = action.payload;
+      state.product = state.product.map((product) =>
+        product.id === id ? { ...product, ...updatedData } : product
+      );
+    },
   },
 });
 
-export const { addProduct, removeProduct } = productSlice.actions;
+export const { addProduct, removeProduct, updateProduct } =
+  productSlice.actions;
 
 export default productSlice.reducer;
