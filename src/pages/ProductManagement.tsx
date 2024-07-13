@@ -18,8 +18,9 @@ import { TProduct } from "../types/productType";
 import Loading from "../components/Loading/Loading";
 import Swal from "sweetalert2";
 import UpdateProductModal from "../components/UpdateProductModal/UpdateProductModal";
+import useWarnIfCartNotEmpty from "../CustomHooks/useWarnIfCartNotEmpty";
 
-const image_hosting_key = "d00e0bab8af22de69cd828138698409d";
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 interface FormData {
@@ -33,6 +34,7 @@ interface FormData {
 }
 
 const ProductManagement = () => {
+  useWarnIfCartNotEmpty();
   const { handleSubmit, formState, control, register, reset } = useForm();
   const { errors } = formState;
   const [product, setProduct] = useState({});
@@ -43,10 +45,9 @@ const ProductManagement = () => {
     searchTerm: "",
   };
 
-  const [addProduct, { isLoading, data: addedProduct }] =
-    useAddProductMutation();
+  const [addProduct, { isLoading }] = useAddProductMutation();
 
-  const [updateProduct, { data: updatedProduct }] = useUpdateProductMutation();
+  const [updateProduct] = useUpdateProductMutation();
 
   const [deleteProduct] = useDeleteProductMutation();
 

@@ -11,8 +11,10 @@ import { BiCategoryAlt } from "react-icons/bi";
 import Slider from "react-slider";
 import { IoIosPricetags } from "react-icons/io";
 import "../layouts/mainLayout/MainLayout.css";
+import useWarnIfCartNotEmpty from "../CustomHooks/useWarnIfCartNotEmpty";
 
 const AllProducts = () => {
+  useWarnIfCartNotEmpty();
   const [selectedSort, setSelectedSort] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [isResetButtonEnabled, setIsResetButtonEnabled] = useState(false);

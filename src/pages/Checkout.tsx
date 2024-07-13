@@ -15,8 +15,10 @@ import toast from "react-hot-toast";
 import { FaCircleXmark } from "react-icons/fa6";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { useAddOrderMutation } from "../redux/features/orders/ordersApi";
+import useWarnIfCartNotEmpty from "../CustomHooks/useWarnIfCartNotEmpty";
 
 const Checkout = () => {
+  useWarnIfCartNotEmpty();
   const { handleSubmit, formState, register, reset } = useForm();
   const { errors } = formState;
   const dispatch = useAppDispatch();

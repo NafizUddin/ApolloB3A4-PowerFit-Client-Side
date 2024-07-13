@@ -1,4 +1,3 @@
-import { BiCategoryAlt } from "react-icons/bi";
 import FeaturedProductLoading from "../components/FeaturedProductLoading/FeaturedProductLoading";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -9,8 +8,10 @@ import HomeProductCard from "../components/HomeProductCard/HomeProductCard";
 import { TProduct } from "../types/productType";
 import fitnessImg from "../assets/fitness.png";
 import { useGetProductsQuery } from "../redux/features/products/productsApi";
+import useWarnIfCartNotEmpty from "../CustomHooks/useWarnIfCartNotEmpty";
 
 const CategoryWiseProducts = () => {
+  useWarnIfCartNotEmpty();
   const { category } = useParams();
 
   const [selectedSort, setSelectedSort] = useState("all");

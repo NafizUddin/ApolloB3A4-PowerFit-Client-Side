@@ -6,12 +6,10 @@ import FeaturedProducts from "../sections/HomeSections/FeaturedProducts/Featured
 import { useGetProductsQuery } from "../redux/features/products/productsApi";
 import ProductContext from "../context/ProductContext";
 import BenefitProduct from "../sections/HomeSections/BenefitsSection/BenefitProduct";
+import useWarnIfCartNotEmpty from "../CustomHooks/useWarnIfCartNotEmpty";
 
 const HomePage = () => {
-  // const queryObj = {
-  //   sort: "",
-  //   searchTerm: "",
-  // };
+  useWarnIfCartNotEmpty();
 
   const [queryObj, setQueryObj] = useState({ sort: "", searchTerm: "" });
 

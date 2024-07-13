@@ -10,8 +10,10 @@ import Loading from "../components/Loading/Loading";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { addProduct } from "../redux/features/products/productSlice";
 import toast from "react-hot-toast";
+import useWarnIfCartNotEmpty from "../CustomHooks/useWarnIfCartNotEmpty";
 
 const ProductDetails = () => {
+  useWarnIfCartNotEmpty();
   const { id } = useParams();
 
   const { data, isLoading } = useGetSingleProductQuery(id);

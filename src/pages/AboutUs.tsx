@@ -21,8 +21,10 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
+import useWarnIfCartNotEmpty from "../CustomHooks/useWarnIfCartNotEmpty";
 
 const AboutUs = () => {
+  useWarnIfCartNotEmpty();
   const [counterOn, setCounterOn] = useState(false);
 
   useEffect(() => {

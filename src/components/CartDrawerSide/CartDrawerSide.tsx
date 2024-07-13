@@ -6,8 +6,10 @@ import {
 } from "../../redux/features/products/productSlice";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import useWarnIfCartNotEmpty from "../../CustomHooks/useWarnIfCartNotEmpty";
 
 const CartDrawerSide = () => {
+  useWarnIfCartNotEmpty();
   const { product, quantities, subtotal } = useAppSelector(
     (state) => state.products
   );
