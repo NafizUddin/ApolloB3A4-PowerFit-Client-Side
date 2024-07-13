@@ -1,30 +1,58 @@
-# React + TypeScript + Vite
+# :ledger: Project: Car Wash Booking
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Project Name:** PowerFit FrontEnd
 
-Currently, two official plugins are available:
+**Project Task:** Building the Front-End for a Fitness Accessories Shopping Website.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Project Motive:** Enhance fitness enthusiasts' shopping experience with a dynamic and user-friendly platform dedicated to premium fitness accessories. Our goal is to empower users to seamlessly explore, select, and purchase high-quality fitness gear that complements their active lifestyle. By focusing on intuitive design and comprehensive product showcases, we aim to inspire and support customers in achieving their fitness goals effectively and stylishly.
 
-## Expanding the ESLint configuration
+## [ Live Server Link](https://powerfit-apollob3a4.netlify.app/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Click here to see the live server: [https://powerfit-apollob3a4.netlify.app/](https://powerfit-apollob3a4.netlify.app/)
 
-- Configure the top-level `parserOptions` property like this:
+## [ Server Side Repository](https://github.com/NafizUddin/ApolloB3A4-PowerFit-Server-Side)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Click here to see the Server Side Repository: [https://github.com/NafizUddin/ApolloB3A4-PowerFit-Server-Side](https://github.com/NafizUddin/ApolloB3A4-PowerFit-Server-Side)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## :keyboard: Technologies
+
+- TypeScript
+- Redux
+- React Router
+- React Hook Form
+- React Hot Toast
+- SwiperJs
+
+## [Some Project Features](https://github.com/NafizUddin/ApolloB3A4-PowerFit-Client-Side)
+
+There are some features in this project. Here I have provided some of them:
+
+**_Product Catalog:_**
+
+-Browse accessories by category
+
+-Filter and sort products based on various criteria (price, popularity, new arrivals).
+
+**_Product Details and Reviews:_**
+
+-Detailed product pages with images, descriptions, and specifications.
+
+-Customer reviews and ratings for each product.
+
+**_Shopping Cart and Checkout:_**
+
+-Add items to a shopping cart.
+
+-Adjust quantities, remove items, and apply discount codes.
+
+-Secure checkout process with multiple payment options (credit/debit card, PayPal, etc.).
+
+**_Responsive Design:_**
+
+-Ensure the website is mobile-friendly and works well across different devices and screen sizes.
+
+**_Customer Support:_**
+
+- Provide a contact form or live chat for customer inquiries and support requests.
+
+- FAQ section to address common questions about products, shipping, and returns.
