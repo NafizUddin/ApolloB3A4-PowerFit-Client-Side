@@ -1,4 +1,4 @@
-# :ledger: Project: Car Wash Booking
+# :ledger: Project: PowerFit FrontEnd Design
 
 **Project Name:** PowerFit FrontEnd
 
