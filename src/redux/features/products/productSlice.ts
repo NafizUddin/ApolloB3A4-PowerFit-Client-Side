@@ -15,6 +15,7 @@ type TInitialState = {
   subtotal: number;
 };
 
+// quantities Object will be like this: { _id: quantity }
 const initialState: TInitialState = {
   product: [],
   quantities: {},

@@ -67,8 +67,6 @@ const ProductDetails = () => {
         inStock,
       };
 
-      console.log(inStock);
-
       dispatch(addProduct(productInfo));
       toast.success("Product added to cart successfully.");
     }

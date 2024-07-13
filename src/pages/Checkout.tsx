@@ -1,21 +1,50 @@
+import { TProduct } from "@/types/productType";
+import Loading from "../components/Loading/Loading";
+import {
+  useGetProductsQuery,
+  useUpdateProductMutation,
+} from "../redux/features/products/productsApi";
 import { removeProduct } from "../redux/features/products/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaCircleXmark } from "react-icons/fa6";
 import { RiErrorWarningFill } from "react-icons/ri";
 
 const Checkout = () => {
-  const { handleSubmit, formState, control, register, reset } = useForm();
+  const { handleSubmit, formState, register, reset } = useForm();
   const { errors } = formState;
   const dispatch = useAppDispatch();
 
   const [togglePayment, setTogglePayment] = useState(false);
+  const [filteredProducts, setFilteredProducts] = useState<TProduct[]>([]);
+  const [updateProduct] = useUpdateProductMutation();
 
-  const { product, quantities, subtotal } = useAppSelector(
-    (state) => state.products
-  );
+  const queryObj = {
+    sort: "",
+    searchTerm: "",
+  };
+
+  const { data: productsResponse, isLoading } = useGetProductsQuery(queryObj);
+
+  const allProducts = productsResponse?.data;
+
+  const {
+    product: stateProducts,
+    quantities,
+    subtotal,
+  } = useAppSelector((state) => state.products);
+
+  useEffect(() => {
+    if (!isLoading) {
+      const stateProductIds = stateProducts.map((product) => product.id);
+      const filtered = allProducts.filter((product) =>
+        stateProductIds.includes(product?._id)
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [allProducts, stateProducts, isLoading]);
 
   const handleRemoveFromCart = (id: string) => {
     dispatch(removeProduct(id));
@@ -30,7 +59,41 @@ const Checkout = () => {
     if (!togglePayment) {
       return toast.error("Please select delivery method");
     }
+
+    try {
+      // Update quantities in the filtered products
+      for (const stateProduct of stateProducts) {
+        const { id } = stateProduct;
+        const quantity = quantities[id] || 0;
+        const filteredProduct = filteredProducts.find(
+          (product) => product._id === id
+        );
+
+        if (filteredProduct) {
+          const { stockQuantity, ...restData } = filteredProduct;
+          const updatedProduct = {
+            ...restData,
+            stockQuantity: filteredProduct.stockQuantity - quantity,
+          };
+
+          const options = {
+            id,
+            data: updatedProduct,
+          };
+
+          await updateProduct(options).unwrap();
+        }
+      }
+
+      toast.success("Order placed successfully!");
+    } catch (error) {
+      toast.error("Failed to place order. Please try again.");
+    }
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>
@@ -269,9 +332,9 @@ const Checkout = () => {
 
               <div className="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
                 <div>
-                  {product.length > 0 &&
-                    product.map((singleProduct) => (
-                      <div>
+                  {stateProducts.length > 0 &&
+                    stateProducts.map((singleProduct) => (
+                      <div key={singleProduct.id}>
                         <ul role="list" className="divide-y divide-gray-200">
                           <li className="flex py-6 px-4 sm:px-6">
                             <div className="flex-shrink-0">
