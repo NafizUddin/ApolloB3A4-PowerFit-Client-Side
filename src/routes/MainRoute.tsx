@@ -7,6 +7,7 @@ import AllProducts from "../pages/AllProducts";
 import CategoryWiseProducts from "../pages/CategoryWiseProducts";
 import ProductDetails from "../pages/ProductDetails";
 import ProductManagement from "../pages/ProductManagement";
+import Checkout from "../pages/Checkout";
 
 const MainRoute = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const MainRoute = createBrowserRouter([
       {
         path: "productManagement",
         element: <ProductManagement />,
+      },
+      {
+        path: "checkout",
+        element: <Checkout />,
       },
     ],
   },

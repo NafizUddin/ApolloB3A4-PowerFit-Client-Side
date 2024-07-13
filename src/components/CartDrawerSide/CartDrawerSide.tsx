@@ -13,18 +13,27 @@ const CartDrawerSide = () => {
 
   // set up the default quantity for the quantityCounter default value
   useEffect(() => {
-    const initialQuantities = product?.reduce((acc, singleProduct) => {
-      acc[singleProduct.id] = singleProduct.quantity || 1;
-      return acc;
-    }, {} as Record<string, number>);
-    setQuantities(initialQuantities);
+    if (product) {
+      const initialQuantities = product.reduce((acc, singleProduct) => {
+        acc[singleProduct.id] = singleProduct.quantity || 1;
+        return acc;
+      }, {} as Record<string, number>);
+      setQuantities(initialQuantities);
+    }
   }, [product]);
 
   const increment = (id: string) => {
-    setQuantities({
-      ...quantities,
-      [id]: (quantities[id] || 0) + 1,
-    });
+    const selectedProduct = product.find((item) => item.id === id);
+    if (selectedProduct) {
+      console.log(selectedProduct.inStock);
+      const currentQuantity = quantities[id] || 0;
+      if (currentQuantity < selectedProduct.inStock) {
+        setQuantities({
+          ...quantities,
+          [id]: currentQuantity + 1,
+        });
+      }
+    }
   };
 
   const decrement = (id: string) => {

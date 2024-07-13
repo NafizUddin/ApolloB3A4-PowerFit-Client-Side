@@ -6,6 +6,7 @@ export type TProductRedux = {
   price: number;
   quantity: number;
   image: string;
+  inStock: number;
 };
 
 type TInitialState = {

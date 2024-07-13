@@ -7,8 +7,9 @@ import { FaCircleXmark } from "react-icons/fa6";
 import QuantitySelector from "../components/QuantitySelector/QuantitySelector";
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading/Loading";
-import { useAppDispatch } from "../redux/hook";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { addProduct } from "../redux/features/products/productSlice";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -20,6 +21,10 @@ const ProductDetails = () => {
 
   const [quantity, setQuantity] = useState(0);
   const [inStock, setInStock] = useState(singleProduct?.stockQuantity || 0);
+
+  const isDisabled = !(inStock && quantity);
+
+  const { product } = useAppSelector((state) => state.products);
 
   useEffect(() => {
     if (singleProduct?.stockQuantity) {
@@ -46,17 +51,27 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = () => {
-    console.log("hello");
+    const existingProduct = product.find((p) => p.id === singleProduct?._id);
 
-    const productInfo = {
-      id: singleProduct?._id,
-      name: singleProduct?.name,
-      price: singleProduct?.price,
-      quantity,
-      image: singleProduct?.image,
-    };
+    if (existingProduct) {
+      // Product already exists in the cart
+      toast.error("This product is already in your cart.");
+    } else {
+      // Product does not exist in the cart, proceed with dispatching
+      const productInfo = {
+        id: singleProduct?._id,
+        name: singleProduct?.name,
+        price: singleProduct?.price,
+        quantity,
+        image: singleProduct?.image,
+        inStock,
+      };
 
-    dispatch(addProduct(productInfo));
+      console.log(inStock);
+
+      dispatch(addProduct(productInfo));
+      toast.success("Product added to cart successfully.");
+    }
   };
 
   if (isLoading) {
@@ -144,9 +159,9 @@ const ProductDetails = () => {
             <div className="flex items-center justify-center lg:justify-start mt-5 md:w-[280px] md:mx-auto lg:w-full lg:mx-auto">
               <label htmlFor="my-drawer-4" className="drawer-button">
                 <span
-                  onClick={handleAddToCart}
+                  onClick={!isDisabled && handleAddToCart}
                   className={`flex items-center gap-2 px-6 py-3  rounded-lg w-full justify-center ${
-                    inStock
+                    inStock && quantity
                       ? "bg-[#e08534] btn-custom text-white cursor-pointer"
                       : "cursor-not-allowed bg-gray-300 text-gray-500"
                   }`}
