@@ -21,6 +21,9 @@ const AllProducts = () => {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(1200);
 
+  // for pagination
+  const itemsPerPage = 9;
+  const [currentPage, setCurrentPage] = useState(1);
   const [checkedState, setCheckedState] = useState(
     categoryJson.reduce((acc, category) => {
       acc[category?.categoryName] = false;
@@ -36,10 +39,18 @@ const AllProducts = () => {
       minPrice: minValue,
       maxPrice: maxValue,
     },
+    page: currentPage,
+    limit: itemsPerPage,
   });
 
-  const { data: productsResponse, isLoading } = useGetProductsQuery(queryObj);
+  const {
+    data: productsResponse,
+    isLoading,
+    refetch,
+  } = useGetProductsQuery(queryObj);
   const allProducts = productsResponse?.data;
+  const meta = productsResponse?.meta;
+  const totalPagesArray = [...Array(meta?.totalPage || 1).keys()];
 
   const handleSelectChange = (event: FormEvent) => {
     const target = event.target as HTMLSelectElement;
@@ -87,6 +98,22 @@ const AllProducts = () => {
     setMaxValue(values[1]);
   };
 
+  const handleCurrentPage = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = async () => {
+    if (currentPage < totalPagesArray.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   useEffect(() => {
     // Update queryObj whenever selectedSort changes
     setQueryObj({
@@ -97,8 +124,19 @@ const AllProducts = () => {
         minPrice: minValue,
         maxPrice: maxValue,
       },
+      page: currentPage,
+      limit: itemsPerPage,
     });
-  }, [selectedSort, searchTerm, checkedState, minValue, maxValue]);
+    refetch();
+  }, [
+    selectedSort,
+    searchTerm,
+    checkedState,
+    minValue,
+    maxValue,
+    currentPage,
+    refetch,
+  ]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -290,6 +328,37 @@ const AllProducts = () => {
                         {...singleProduct}
                       />
                     ))}
+                  </div>
+                  <div className="flex justify-center items-center flex-wrap mt-16 mb-10">
+                    {totalPagesArray?.length > 1 && (
+                      <div className="join pb-10">
+                        <button
+                          onClick={handlePrevPage}
+                          className="join-item btn"
+                        >
+                          Previous
+                        </button>
+                        {totalPagesArray?.map((page) => (
+                          <button
+                            key={page}
+                            onClick={() => handleCurrentPage(page)}
+                            className={
+                              currentPage === page + 1
+                                ? "join-item btn selected bg-[#e08534] text-white"
+                                : "join-item btn"
+                            }
+                          >
+                            {page + 1}
+                          </button>
+                        ))}
+                        <button
+                          onClick={handleNextPage}
+                          className="join-item btn"
+                        >
+                          Next
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

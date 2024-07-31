@@ -23,6 +23,8 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(0);
   const [inStock, setInStock] = useState(singleProduct?.stockQuantity || 0);
 
+  const isDisabled = !(inStock && quantity);
+
   const { product } = useAppSelector((state) => state.products);
 
   useEffect(() => {
@@ -136,7 +138,7 @@ const ProductDetails = () => {
                 </p>
               </div>
             </div>
-            <div className="mt-5 md:w-[280px] md:mx-auto lg:w-full lg:mx-auto">
+            <div className="mt-5 w-[280px] mx-auto lg:w-full lg:mx-auto">
               <QuantitySelector
                 quantity={quantity}
                 increment={increment}
@@ -145,18 +147,23 @@ const ProductDetails = () => {
               />
             </div>
             <div className="flex items-center justify-center lg:justify-start mt-5 md:w-[280px] md:mx-auto lg:w-full lg:mx-auto">
-              <label htmlFor="my-drawer-4" className="drawer-button">
-                <span
-                  onClick={handleAddToCart}
-                  className={`flex items-center gap-2 px-6 py-3  rounded-lg w-full justify-center ${
-                    inStock && quantity
-                      ? "bg-[#e08534] btn-custom text-white cursor-pointer"
-                      : "cursor-not-allowed bg-gray-300 text-gray-500"
-                  }`}
-                >
+              {isDisabled ? (
+                <button className="flex items-center gap-2 px-6 py-3  rounded-lg w-full justify-center btn btn-disabled">
                   <BsCart3></BsCart3> <span>Add to cart</span>
-                </span>
-              </label>
+                </button>
+              ) : (
+                <label
+                  htmlFor="my-drawer-4"
+                  className="drawer-button w-[280px] mx-auto lg:w-full lg:mx-auto"
+                >
+                  <span
+                    onClick={handleAddToCart}
+                    className="flex items-center gap-2 px-6 py-3  rounded-lg w-full justify-center bg-[#e08534] btn-custom text-white cursor-pointer"
+                  >
+                    <BsCart3></BsCart3> <span>Add to cart</span>
+                  </span>
+                </label>
+              )}
             </div>
           </div>
         </div>

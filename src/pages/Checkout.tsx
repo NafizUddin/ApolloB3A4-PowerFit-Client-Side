@@ -62,12 +62,16 @@ const Checkout = () => {
     }
   }, [allProducts, stateProducts, isLoading]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleRemoveFromCart = (id: string) => {
     dispatch(removeProduct(id));
     toast.success("Product removed successfully!");
   };
 
-  const shipping = subtotal * 0.01;
+  const shipping = subtotal * 0.1;
   const taxes = subtotal * 0.05;
   const total = subtotal + shipping + taxes;
 
@@ -291,7 +295,7 @@ const Checkout = () => {
                             className="mt-6 text-sm font-medium text-gray-900"
                           >
                             {" "}
-                            ${shipping}{" "}
+                            ${shipping.toFixed(2)}{" "}
                           </span>
                         </div>
                       </div>

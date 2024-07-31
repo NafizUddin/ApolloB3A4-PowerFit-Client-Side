@@ -6,8 +6,15 @@ const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: (queryObj) => {
-        const { searchTerm, sort, categories, priceRange, category } =
-          queryObj || {};
+        const {
+          searchTerm,
+          sort,
+          categories,
+          priceRange,
+          category,
+          page,
+          limit,
+        } = queryObj || {};
 
         // map() iterates through the filtered key-value pairs and directly extracts the key (category) using array destructuring with [key].
 
@@ -51,6 +58,11 @@ const productApi = baseApi.injectEndpoints({
           } else {
             params.append("sort", "-createdAt");
           }
+        }
+
+        if (page && limit) {
+          params.append("page", page);
+          params.append("limit", limit);
         }
 
         if (params.toString()) {
